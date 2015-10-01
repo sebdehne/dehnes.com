@@ -33,7 +33,7 @@ jekyll-archives:
     tag: '/tag/:name/'
 
 # Disqus comments
-disqus_shortname: disqus_LTyrfYfnH3
+disqus_shortname: sebastiandehnesblog
 
 # Google analytics
 # ga_tracking_id: "UA-XXXX-1"
