@@ -77,4 +77,41 @@ The component at the top is the 2×7 flat cable connector. The long vertical com
 
 I developed the PCB using the same method as explained on my [previous post](/electronics/2010/03/10/making-pcbs.html) with the additional feature of adding an aligned upper layer. After four attempts, I finally managed to developed a double sided board which works:
 
+<a href="/assets/images/rf_transceiver/rf_receiver-01.jpg" data-lightbox="pic" data-title="">
+	<img src="/assets/images/rf_transceiver/rf_receiver-01.jpg" alt="board"/>
+</a>
+<a href="/assets/images/rf_transceiver/rf_receiver-02.jpg" data-lightbox="pic" data-title="">
+	<img src="/assets/images/rf_transceiver/rf_receiver-02.jpg" alt="board"/>
+</a>
 
+## More pictures
+   
+<a href="/assets/images/rf_transceiver/rf_receiver-03.jpg" data-lightbox="pic" data-title="">
+	<img src="/assets/images/rf_transceiver/rf_receiver-03.jpg" alt="board"/>
+</a>
+<a href="/assets/images/rf_transceiver/rf_receiver-04.jpg" data-lightbox="pic" data-title="">
+	<img src="/assets/images/rf_transceiver/rf_receiver-04.jpg" alt="board"/>
+</a>
+<a href="/assets/images/rf_transceiver/rf_receiver-05.jpg" data-lightbox="pic" data-title="">
+	<img src="/assets/images/rf_transceiver/rf_receiver-05.jpg" alt="board"/>
+</a>
+<a href="/assets/images/rf_transceiver/rf_receiver-06.jpg" data-lightbox="pic" data-title="">
+	<img src="/assets/images/rf_transceiver/rf_receiver-06.jpg" alt="board"/>
+</a>
+
+The antenna which I use is: [ANT-433-PW-QW-ND](http://search.digikey.com/scripts/DkSearch/dksus.dll?WT.z_header=search_go&lang=en&site=us&keywords=ANT-433-PW-QW-ND&x=0&y=0).
+
+<a href="/assets/images/rf_transceiver/rf_receiver-07.jpg" data-lightbox="pic" data-title="">
+	<img src="/assets/images/rf_transceiver/rf_receiver-07.jpg" alt="board"/>
+</a>
+<a href="/assets/images/rf_transceiver/rf_receiver-08.jpg" data-lightbox="pic" data-title="">
+	<img src="/assets/images/rf_transceiver/rf_receiver-08.jpg" alt="board"/>
+</a>
+
+## Downloads
+
+In case you want to build something like this yourself, here are all my project files, including the source for the program on the microcontroller. I developed this using the Microchip MPLAB IDE.
+
+* The binary executable for the PIC16F690 microcontroller: [rf_receiver-v1.hex](/assets/download/rf_transceiver/rf_receiver-v1.hex)
+* The assembly source code: [rf_receiver_source-v1.rar](/assets/download/rf_transceiver/rf_receiver_source-v1.rar)
+* The eagle project files: [RF_receiver_eagle_files-v1.rar](/assets/download/rf_transceiver/RF_receiver_eagle_files-v1.rar)
