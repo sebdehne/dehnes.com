@@ -75,5 +75,5 @@ And here is the board in 3D view:
 
 Now I’m sending the design files to a yet-to-be-chosen PCB manufacturer and get this board made.
 
-In the [next post](), I’ll show you the final board, build it and open-source all project files, including the PIC firmware.
+In the [next post](/electronics/2012/02/25/garage_door_2.html), I’ll show you the final board, build it and open-source all project files, including the PIC firmware.
 

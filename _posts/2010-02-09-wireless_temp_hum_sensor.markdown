@@ -9,7 +9,7 @@ categories: electronics
 In the scope of my personal home automation project, it is vital to know the temperature and humidity in rooms and outside. 
 Besides logging this information and presenting it on a screen or on my cell phone or something, it can be used to control 
 heating, air conditioning or ventilation. With this in mind, I built my own temperature and humidity sensor, which transmits 
-it’s measurements to my [central receiver]() (connected to my home-server) for further processing.
+it’s measurements to my [central receiver](/electronics/2010/10/10/rf_transceiver.html) (connected to my home-server) for further processing.
 
 When designing and building this sensor, it was important to me to use cheap components, since I’ll be making at least 10 
 of them and spread them around the house. Another requirement was that the sensor should consume very little power, so 
@@ -51,7 +51,7 @@ Position | Contains | Length in number of bits
 4...N | message’s body | (N-3) * 8
 N+1 | CRC16 value | 16
 
-The receiver module (covered in [this]() post) is able understand the self-clocking signal and check’s the CRC16 for error 
+The [receiver module](/electronics/2010/10/10/rf_transceiver.html) is able understand the self-clocking signal and check’s the CRC16 for error 
 detection before passing it onwards for further processing. The result is very usable, inexpensive and low power consuming 
 wireless data transmission. The disadvantage with this approach is that it lacks any kind of security. Anyone can capture 
 the signals and even send fake values to the receiver. Once those signals are going to be used to control something like 
@@ -134,7 +134,7 @@ The green item on the left is the RF transmitter module. The white plastic senso
 battery is the humidity sensor. The temperature sensor is the gray component which sticks out above the black PIC 
 micro-controller.
 
-The receiver unit (covered in [this]() post) is connected to my home server where a small perl script converts the raw 
+The [receiver unit](/electronics/2010/10/10/rf_transceiver.html) is connected to my home server where a small perl script converts the raw 
 values into degrees Celcius and relative humidity and stores those values into a database using rrdtool. The first 
 image shows the humidity in the bath room (watch the humidity raise as someone is using the shower):
 
@@ -144,5 +144,5 @@ image shows the humidity in the bath room (watch the humidity raise as someone i
 
 ## What’s next
 
-The next step is [to design a neat PCB]() and select a small enclosure and fabricate 10 of those sensors, which I can place 
+The next step is [to design a neat PCB](/electronics/2010/03/10/making-pcbs.html) and select a small enclosure and fabricate 10 of those sensors, which I can place 
 around the house and outside. But this will have to wait for the next blog post.
