@@ -12,7 +12,7 @@ To enable faster charging of our EV, I needed 3 phase 400V. But in Norway, most 
  a cheap second hand transformer. I will also show you how you can soft start such a transformer to overcome the problem
  of high inrush current.
  
-In the [previous post](/electronics/2015/10/08/soldering_thermal_fuse.html), I showed you how to solder those thermal fused without damaging them.
+In the [previous post](/electronics/2015/10/08/soldering_thermal_fuse.html), I showed you how to solder those thermal fuses without damaging them.
   
 {% include youtube.html %}
 
