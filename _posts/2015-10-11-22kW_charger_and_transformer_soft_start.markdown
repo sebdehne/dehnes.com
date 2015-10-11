@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "How to build a 22kW charging station + soft starter for a 25kVA transformer"
-date:   2015-11-11 20:00:00
+date:   2015-10-11 20:00:00
 author: Sebastian Dehne
 videoid: IALe5KcBb8c
 categories: electronics
