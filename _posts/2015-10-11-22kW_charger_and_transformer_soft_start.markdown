@@ -13,6 +13,9 @@ To enable faster charging of our EV, I needed 3 phase 400V. But in Norway, most 
  of high inrush current.
  
 In the [previous post](/electronics/2015/10/08/soldering_thermal_fuse.html), I showed you how to solder those thermal fuses without damaging them.
+
+Credits go to the helpful guys from the [EEVBlog forum](http://www.eevblog.com/forum/beginners/3-phase-isolating-transformer-shorted/) for helping
+me building this.
   
 {% include youtube.html %}
 
