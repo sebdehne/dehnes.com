@@ -7,7 +7,7 @@ videoid: qDc9i3p_1Xo
 categories: electronics
 ---
 
-For my next project, I needed to build in sme thermal protection which would cut off the power in case of overheating. The
+For [my next project](/electronics/2015/11/11/22kW_charger_and_transformer_soft_start.html), I needed to build in sme thermal protection which would cut off the power in case of overheating. The
   way to do that, is to use a thermal (cut off) fuse which is a one time use circuit breaker which disconnects the circuit 
   once it reaches a certain temperature. Once the fuse has blown, it needs to be replaced.  
 
