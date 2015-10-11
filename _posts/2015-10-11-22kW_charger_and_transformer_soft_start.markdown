@@ -46,3 +46,9 @@ The terminal block on top is the primary side. The terminal at the button is the
 <a href="/assets/images/22kW_charger/04_input_splitter.jpg" data-lightbox="pic" data-title="230V input split and 32A circuit breaker with earth fault switch">
 	<img src="/assets/images/22kW_charger/04_input_splitter.jpg" alt="board"/>
 </a>
+
+### Schematic 
+
+<a href="/assets/images/22kW_charger/05_schematic.png" data-lightbox="pic" data-title="Schematic">
+	<img src="/assets/images/22kW_charger/05_schematic.png" alt="board"/>
+</a>
