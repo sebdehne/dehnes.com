@@ -18,6 +18,7 @@ To enable faster charging of our EV, I needed 3 phase 400V. But in Norway, most 
 Here are some close up photos:
 
 ### 25kVA dYN transformer wiring
+The terminal block on top is the primary side. The terminal at the button is the secondary side. The neutral output is connected to ground.
 
 <a href="/assets/images/22kW_charger/01_transformer.jpg" data-lightbox="pic" data-title="25kVA dYN transformer wiring">
 	<img src="/assets/images/22kW_charger/01_transformer.jpg" alt="board"/>
