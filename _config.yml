@@ -2,16 +2,17 @@
 gems:
   - jekyll-archives # Sorry, not GitHub pages friendly!
   - jekyll-sitemap
+  - jekyll-paginate
 
 keep_files: [gallery,ipcam,pp_powerSwitch,sebas]
 
 # Site settings
 title: Sebastian Dehne's Blog
-subtitle: "Stuff I want to share"
+subtitle: "Things that keep me busy in my spare time"
 email: sebastian@dehnes.com
 name: Sebastian Dehne
 description: > 
-  Stuff I want to share
+  Things that keep me busy in my spare time
 baseurl: "/"
 url: "http://dehnes.com" # the base hostname & protocol for your site
 cover: "assets/header_image.jpg"
@@ -45,6 +46,9 @@ descriptions:
 
   - cat: electronics
     desc: "Electronics & Home automation"
+
+  - cat: software
+    desc: "Software related projects"
 
 # Social icons and sharing options
 #
