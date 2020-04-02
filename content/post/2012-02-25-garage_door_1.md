@@ -1,4 +1,4 @@
----
+        ---
 layout: post
 title:  "Garage door controller – part 1"
 date:   2012-02-25 08:43:59
