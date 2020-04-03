@@ -1,12 +1,21 @@
 ---
 layout: post
 title:  "Password management using YuBiKey, PGP/GnuPG and GIT"
-date:   2020-04-01   20:00:00
+date:   2020-04-03 20:00:00
 author: Sebastian Dehne
 URL:     "/software/2020/04/03/password_management_yubikey_pgp_git.html"
 categories: [ software ]
-draft: true
 ---
+
+* [ Overview ](#overview)
+* [ PGP key setup ](#pgp-key-setup)
+* [ Windows + setting up the git repository ](#windows--setting-up-the-git-repository)
+   * [ SSH authentication ](#ssh-authentication)
+* [ Mac ](#mac)
+   * [ SSH authentication ](#ssh-authentication-1)
+* [ Android ](#android)
+   * [ OpenKeyChain ](#openkeychain)
+   * [ Android Password Store ](#android-password-store)
 
 ## Overview
 {{< lightbox src="/img/passwords/overview.png" lightbox="passwords" title=" ">}}
@@ -15,10 +24,11 @@ Basically, all passwords are kept in a one-password-per-file structure according
 which are encrypted using PGP (GnuPG) and version controlled using git. This git repository is kept in sync across 
 devices using a remote git hosting service like [GitHUB](https://www.github.com/).
 
-The nice part about this solution is that the private keys, which are needed to decrypt, and thus to access any password,
-are kept in a [YuBiKey](https://www.yubico.com/product/yubikey-5-nfc). That minimizes the risk of someone else getting
-access to those keys and you do not have to type your passphrase each time to unlock the secret key, which is unsecure 
-because og keylogging and also quite inconvenient on smartphones.
+The nice part about this solution is that the private/secret keys, which are needed every time to access a password,
+are kept in a [YuBiKey](https://www.yubico.com/product/yubikey-5-nfc) and therefore not stored and distributed on any of my
+devices. Without this YuBiKey, I cannot decrypt any of the encrypted password files which are distributed across my devices. 
+That minimizes the risk of someone else getting access to those keys and it is not needed to type a passphrase each time 
+to unlock the secret key, which is insecure because of the possibility of keylogging. It is also inconvenient to type a passphrase on smartphones.
 
 The [YuBiKey](https://www.yubico.com/product/yubikey-5-nfc) has a USB interface and NFC support - which makes it
 really convenient to be used together with smartphones. The YuBiKey has support for different protocols, and for this
@@ -41,8 +51,8 @@ time later. You could also generate a complete new set of keys (using the same m
 using the new key set. But be aware of the nature of git, which still has the files using the old keys in its history. You should get 
 rid of that history when you rotate your keys.  
 
-Once you have setup your PGP keys and stored a backup of your keys in a secure offline place, you can continue setting
-this up on your clients:
+Once you have setup your PGP keys on your YuBiKey and stored also a backup of them in a secure offline place, you 
+can continue setting this up on your clients:
 
 ## Windows + setting up the git repository
 Install the  following:
@@ -54,8 +64,8 @@ Install the  following:
 Next you need to import your **public** keys into your local GnuPG installation. Open `cmd` and run:
 
     $ gpg --import public.key.txt
-    gpg: keybox 'C:/Users/sebas/AppData/Roaming/gnupg/pubring.kbx' created
-    gpg: C:/Users/sebas/AppData/Roaming/gnupg/trustdb.gpg: trustdb created
+    gpg: keybox 'C:/Users/yourUsername/AppData/Roaming/gnupg/pubring.kbx' created
+    gpg: C:/Users/yourUsername/AppData/Roaming/gnupg/trustdb.gpg: trustdb created
     gpg: key 4A77FE3D76CDDBF2: public key "Your Name <yourUserId@example.com>" imported
     gpg: Total number processed: 1
     gpg:               imported: 1
@@ -63,7 +73,7 @@ Next you need to import your **public** keys into your local GnuPG installation.
 And verify you have them imported using:
 
     $ gpg --list-keys
-    C:/Users/sebas/AppData/Roaming/gnupg/pubring.kbx
+    C:/Users/yourUsername/AppData/Roaming/gnupg/pubring.kbx
     ------------------------------------------------
     pub   rsa4096 2020-03-29 [SC]
           FD4537161A3AB6D4578C6D134A77FE3D76CDDBF2
@@ -72,7 +82,7 @@ And verify you have them imported using:
     sub   rsa4096 2020-03-29 [E] [expires: 2020-10-25]
     sub   rsa4096 2020-03-29 [A] [expires: 2020-10-25]
 
-But gpg does not have your private keys yet, so this command should give an empty output:
+But gpg does not have your private keys yet (which are needed for decryption), so this command should give an empty output:
 
     $ gpg --list-secret-keys
 
@@ -111,11 +121,11 @@ and type:
     ssb>  rsa4096/F1F4D8F8675EE2CA  created: 2020-03-29  expires: 2020-10-25
                                     card-no: 0006 10155501
     
-You should see your YuBiKey detected as a GPG-smartcard and you will also see your 3 private keys. Now try
+You should see your YuBiKey detected as a GPG-smartcard and you will also see your 3 private keys as shown above. Now try
 to list your private keys again:
 
     $ gpg --list-secret-keys
-    C:/Users/sebas/AppData/Roaming/gnupg/pubring.kbx
+    C:/Users/yourUsername/AppData/Roaming/gnupg/pubring.kbx
     ------------------------------------------------
     sec#  rsa4096 2020-03-29 [SC]
           FD4537161A3AB6D4578C6D134A77FE3D76CDDBF2
@@ -129,14 +139,15 @@ You should now see that gpg knows that the secret keys which belong to your publ
 is correct. gpg should not have access to the secret master key).
 
 ### SSH authentication
-Next step is to setup ssh authentication. We are going to use PuTTY for that. Once we have putty using our gpg-keys for
-ssh authentication, we will configure git to use putty for ssh (plink.exe is the command-line version og putty which git
-can use).
+Next step is to setup ssh authentication. We are going to use PuTTY for that.
 
-Normally, putty uses it own agent called `pageant.exe` but what we are going to do now is to replace `pageant.exe` and let
-PuTTY connect to the `gpg-agent` instead.
+The git-for-windows installer also installs a native OpenSSH client on windows. But I was not able to make this work with GPG. 
+Therefore I switched to using Putty which works fine. 
 
-Configure the gpg-agent to act as the putty agent but using the following `%APPDATA%\gnupg\gpg-agent.conf`:
+Normally, PuTTY uses it own ssh-agent called `pageant.exe`. But in order to make PuTTY work together with GPG, we are going to 
+replace `pageant.exe` and let PuTTY connect to the `gpg-agent` instead.
+
+Configure the gpg-agent to act as the putty agent by using the following `%APPDATA%\gnupg\gpg-agent.conf`:
 
      enable-putty-support
      enable-ssh-support
@@ -182,9 +193,120 @@ And you will be asked for your pin:
 You are done. You can use a GUI tool such as [QtPass](https://qtpass.org/) if you'd like. 
 
 ## Mac
+Assuming this is the first time you are using GPG on your mac. First you need to install GnuPG:
 
-## Ubuntu/Linux
+    $ brew install gnupg2 pinentry-mac
+    
+(Or use any other method to install it).
 
+Next, import your **public** key:
+
+    $ gpg --import public.key.txt
+    gpg: directory '/Users/yourUsername/.gnupg' created
+    gpg: keybox '/Users/yourUsername/.gnupg/pubring.kbx' created
+    gpg: /Users/yourUsername/.gnupg/trustdb.gpg: trustdb created
+    gpg: key 4A77FE3D76CDDBF2: public key "Your Name <yourUserId@example.com>" imported
+    gpg: Total number processed: 1
+    gpg:               imported: 1
+
+And verify you have them imported using:
+
+    $ gpg --list-keys
+    /Users/yourUsername/.gnupg/pubring.kbx
+    -------------------------------
+    pub   rsa4096 2020-03-29 [SC]
+          FD4537161A3AB6D4578C6D134A77FE3D76CDDBF2
+    uid           [ unknown] Your Name <yourUserId@example.com>
+    sub   rsa4096 2020-03-29 [S] [expires: 2020-10-25]
+    sub   rsa4096 2020-03-29 [E] [expires: 2020-10-25]
+    sub   rsa4096 2020-03-29 [A] [expires: 2020-10-25]
+    
+But gpg does not have your private keys yet (which are needed for decryption), so this command should give an empty output:
+
+    $ gpg --list-secret-keys
+
+So far so good. now we need to tell `gpg` that the private keys are on the YuBiKey. Insert the YuBiKey into one of your USB ports
+and type:
+
+    $ gpg --card-status
+    Reader ...........: Yubico YubiKey OTP FIDO CCID 0
+    Application ID ...: D2760001240102010006101555010000
+    Application type .: OpenPGP
+    Version ..........: 2.1
+    Manufacturer .....: Yubico
+    Serial number ....: 10155501
+    Name of cardholder: Your Name
+    Language prefs ...: en
+    Salutation .......:
+    URL of public key : [not set]
+    Login data .......: yourUserId@example.com
+    Signature PIN ....: not forced
+    Key attributes ...: rsa4096 rsa4096 rsa4096
+    Max. PIN lengths .: 127 127 127
+    PIN retry counter : 3 0 3
+    Signature counter : 2
+    Signature key ....: 2465 49CD 4E79 EFB7 828E  CCCE 11BF 0B72 4E09 C10F
+          created ....: 2020-03-29 09:14:38
+    Encryption key....: BA38 748D 161F CA2D 008F  D8EF 49D3 212A 99F7 183F
+          created ....: 2020-03-29 09:16:30
+    Authentication key: 88CF C223 9A0E 3DFA 09CE  643C F1F4 D8F8 675E E2CA
+          created ....: 2020-03-29 09:22:55
+    General key info..: sub  rsa4096/11BF0B724E09C10F 2020-03-29 Your Name <yourUserId@example.com>
+    sec#  rsa4096/4A77FE3D76CDDBF2  created: 2020-03-29  expires: never
+    ssb>  rsa4096/11BF0B724E09C10F  created: 2020-03-29  expires: 2020-10-25
+                                    card-no: 0006 10155501
+    ssb>  rsa4096/49D3212A99F7183F  created: 2020-03-29  expires: 2020-10-25
+                                    card-no: 0006 10155501
+    ssb>  rsa4096/F1F4D8F8675EE2CA  created: 2020-03-29  expires: 2020-10-25
+                                    card-no: 0006 10155501
+    
+You should see your YuBiKey detected as a GPG-smartcard and you will also see your 3 private keys as shown above. Now try
+to list your private keys again:
+
+    $ gpg --list-secret-keys
+    /Users/yourUsername/.gnupg/pubring.kbx
+    ------------------------------------------------
+    sec#  rsa4096 2020-03-29 [SC]
+          FD4537161A3AB6D4578C6D134A77FE3D76CDDBF2
+    uid           [ unknown] Your Name <yourUserId@example.com>
+    ssb>  rsa4096 2020-03-29 [S] [expires: 2020-10-25]
+    ssb>  rsa4096 2020-03-29 [E] [expires: 2020-10-25]
+    ssb>  rsa4096 2020-03-29 [A] [expires: 2020-10-25]
+
+You should now see that gpg knows that the secret keys which belong to your public keys are on the YuBiKey (note the 
+`>` character, which means the secret key is on the smartcard. `#` behind the masterkey means that the key is missing - which
+is correct. gpg should not have access to the secret master key).
+
+### SSH authentication
+Next step is to setup ssh authentication. Normally, the `ssh` client will connect to the `ssh-agent`, but in order to
+make ssh authentication work together with GPG, we need to make `ssh` connect to the `gpg-agent` instead. This can be done
+by ensuring the ssh-agent is **not** running:
+
+    $ killall ssh-agent
+
+Next, configure the `gpg-agent` by placing the following content into the file `/Users/yourUsername/.gnupg/gpg-agent.conf`
+
+    enable-ssh-support
+    default-cache-ttl 60
+    max-cache-ttl 120
+    pinentry-program /usr/local/bin/pinentry-mac
+    
+Now restart the `gpg-agent`:
+
+    $ killall gpg-agent
+    $ gpg-connect-agent /bye
+    gpg-connect-agent: no running gpg-agent - starting '/usr/local/Cellar/gnupg/2.2.20/bin/gpg-agent'
+    gpg-connect-agent: waiting for the agent to come up ... (5s)
+    gpg-connect-agent: connection to agent established
+
+Now the `gpg-agent` is ready, all we need to do is to tell `ssh` to use the `gpg-agent` instead of the default `ssh-agent`. That
+is done by setting the environment variable `SSH_AUTH_SOCK` as follows:
+
+    $ export SSH_AUTH_SOCK=/Users/yourUsername/.gnupg/S.gpg-agent.ssh
+    
+Make this permanent by placing this command in `.bash_profile`
+
+Done. You should now be able to `git pull` and `git push` your password repository using your YuBiKey. 
 
 ## Android 
 ### OpenKeyChain
