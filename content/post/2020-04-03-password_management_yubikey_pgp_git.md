@@ -17,8 +17,8 @@ devices using a remote git hosting service like [GitHUB](https://www.github.com/
 
 The nice part about this solution is that the private keys, which are needed to decrypt, and thus to access any password,
 are kept in a [YuBiKey](https://www.yubico.com/product/yubikey-5-nfc). That minimizes the risk of someone else getting
-access to those keys and you do not have to type your passphrase each time, which is unsecure because og keylogging and
-also quite inconvenient on smartphones.
+access to those keys and you do not have to type your passphrase each time to unlock the secret key, which is unsecure 
+because og keylogging and also quite inconvenient on smartphones.
 
 The [YuBiKey](https://www.yubico.com/product/yubikey-5-nfc) has a USB interface and NFC support - which makes it
 really convenient to be used together with smartphones. The YuBiKey has support for different protocols, and for this
@@ -33,29 +33,44 @@ There are multiple guides on how to setup this up already which I will just link
 First you need to setup your encryption keys (check out [this video](https://www.youtube.com/watch?v=AQDCe585Lnc) if you 
 do not understand the concept og public/private keys yet).
 
-Follow [Guide to using YubiKey for GPG and SSH](https://github.com/drduh/YubiKey-Guide) to set up your PGP-keys. 
+Follow [Guide to using YubiKey for GPG and SSH](https://github.com/drduh/YubiKey-Guide) to set up your PGP-keys correctly 
+on your YuBiKey.
 
-You do not need to worry about the expire time of your keys (I used 6 months). You can quite easily extend the expire 
+Do not worry about the expire time of your keys (I used 6 months). You can quite easily extend the expire 
 time later. You could also generate a complete new set of keys (using the same master key) and re-encrypt your passwords 
 using the new key set. But be aware of the nature of git, which still has the files using the old keys in its history. You should get 
 rid of that history when you rotate your keys.  
 
-Once you have setup your keys and stored a backup of your keys in a secure offline place, you can continue setting
+Once you have setup your PGP keys and stored a backup of your keys in a secure offline place, you can continue setting
 this up on your clients:
 
 ## Windows + setting up the git repository
-Install:
+Install the  following:
+
 - [gpg4win](https://www.gpg4win.org/)
 - [putty](https://www.putty.org/) (use the installer to ensure everything we need is properly installed)
 - [Git](https://git-scm.com/download/win)
 
-Next you need to import your public keys. Open `cmd` and run:
+Next you need to import your **public** keys into your local GnuPG installation. Open `cmd` and run:
 
     $ gpg --import public.key.txt
+    gpg: keybox 'C:/Users/sebas/AppData/Roaming/gnupg/pubring.kbx' created
+    gpg: C:/Users/sebas/AppData/Roaming/gnupg/trustdb.gpg: trustdb created
+    gpg: key 4A77FE3D76CDDBF2: public key "Your Name <yourUserId@example.com>" imported
+    gpg: Total number processed: 1
+    gpg:               imported: 1
 
 And verify you have them imported using:
 
     $ gpg --list-keys
+    C:/Users/sebas/AppData/Roaming/gnupg/pubring.kbx
+    ------------------------------------------------
+    pub   rsa4096 2020-03-29 [SC]
+          FD4537161A3AB6D4578C6D134A77FE3D76CDDBF2
+    uid           [ultimate] Your Name <yourUserId@example.com>
+    sub   rsa4096 2020-03-29 [S] [expires: 2020-10-25]
+    sub   rsa4096 2020-03-29 [E] [expires: 2020-10-25]
+    sub   rsa4096 2020-03-29 [A] [expires: 2020-10-25]
 
 But gpg does not have your private keys yet, so this command should give an empty output:
 
@@ -65,33 +80,126 @@ So far so good. now we need to tell `gpg` that the private keys are on the YuBiK
 and type:
 
     $ gpg --card-status
-
+    Reader ...........: Yubico YubiKey OTP FIDO CCID 0
+    Application ID ...: D2760001240102010006101555010000
+    Application type .: OpenPGP
+    Version ..........: 2.1
+    Manufacturer .....: Yubico
+    Serial number ....: 10155501
+    Name of cardholder: Your Name
+    Language prefs ...: en
+    Salutation .......:
+    URL of public key : [not set]
+    Login data .......: yourUserId@example.com
+    Signature PIN ....: not forced
+    Key attributes ...: rsa4096 rsa4096 rsa4096
+    Max. PIN lengths .: 127 127 127
+    PIN retry counter : 3 0 3
+    Signature counter : 2
+    Signature key ....: 2465 49CD 4E79 EFB7 828E  CCCE 11BF 0B72 4E09 C10F
+          created ....: 2020-03-29 09:14:38
+    Encryption key....: BA38 748D 161F CA2D 008F  D8EF 49D3 212A 99F7 183F
+          created ....: 2020-03-29 09:16:30
+    Authentication key: 88CF C223 9A0E 3DFA 09CE  643C F1F4 D8F8 675E E2CA
+          created ....: 2020-03-29 09:22:55
+    General key info..: sub  rsa4096/11BF0B724E09C10F 2020-03-29 Your Name <yourUserId@example.com>
+    sec#  rsa4096/4A77FE3D76CDDBF2  created: 2020-03-29  expires: never
+    ssb>  rsa4096/11BF0B724E09C10F  created: 2020-03-29  expires: 2020-10-25
+                                    card-no: 0006 10155501
+    ssb>  rsa4096/49D3212A99F7183F  created: 2020-03-29  expires: 2020-10-25
+                                    card-no: 0006 10155501
+    ssb>  rsa4096/F1F4D8F8675EE2CA  created: 2020-03-29  expires: 2020-10-25
+                                    card-no: 0006 10155501
+    
 You should see your YuBiKey detected as a GPG-smartcard and you will also see your 3 private keys. Now try
 to list your private keys again:
 
     $ gpg --list-secret-keys
+    C:/Users/sebas/AppData/Roaming/gnupg/pubring.kbx
+    ------------------------------------------------
+    sec#  rsa4096 2020-03-29 [SC]
+          FD4537161A3AB6D4578C6D134A77FE3D76CDDBF2
+    uid           [ unknown] Your Name <yourUserId@example.com>
+    ssb>  rsa4096 2020-03-29 [S] [expires: 2020-10-25]
+    ssb>  rsa4096 2020-03-29 [E] [expires: 2020-10-25]
+    ssb>  rsa4096 2020-03-29 [A] [expires: 2020-10-25]
 
 You should now see that gpg knows that the secret keys which belong to your public keys are on the YuBiKey (note the 
-`>` character, which means the secret key is on the smartcard)
-   
+`>` character, which means the secret key is on the smartcard. `#` behind the masterkey means that the key is missing - which
+is correct. gpg should not have access to the secret master key).
+
 ### SSH authentication
-Next step is to setup ssh authentication. We are going to use PuTTY for that. So if you already have
+Next step is to setup ssh authentication. We are going to use PuTTY for that. Once we have putty using our gpg-keys for
+ssh authentication, we will configure git to use putty for ssh (plink.exe is the command-line version og putty which git
+can use).
+
+Normally, putty uses it own agent called `pageant.exe` but what we are going to do now is to replace `pageant.exe` and let
+PuTTY connect to the `gpg-agent` instead.
+
+Configure the gpg-agent to act as the putty agent but using the following `%APPDATA%\gnupg\gpg-agent.conf`:
+
+     enable-putty-support
+     enable-ssh-support
+     default-cache-ttl 60
+     max-cache-ttl 120
+     pinentry-program "C:\Program Files (x86)\Gpg4win\bin\pinentry.exe"
+
+Now restart the gpg-agent:
+    
+    $ gpgconf --kill gpg-agent
+    $ gpg-connect-agent /bye
+    gpg-connect-agent: no running gpg-agent - starting 'C:\Program Files (x86)\Gpg4win\..\GnuPG\bin\gpg-agent.exe'
+    gpg-connect-agent: waiting for the agent to come up ... (5s)
+    gpg-connect-agent: connection to agent established
+
+Now everything should be setup correctly. Extract your ssh public key as follows:
+
+    $ gpg --export-ssh-key yourUserId@example.com
+    ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCzJLTKb4foiyAMQWsnviiSKrEoVVZn8rGKScLZid8hXyKws7D7+7uudEMG7H1E05eLtOM68tp7G
+    TjeoesY9pwSOtw3Jc10mM3w1XxkLR3UqpBbFbMRUAelL+Q9T2VmWMU35aBrXGuA2Gbt30qZjVUV6g/AuFY+euRQJgFNzbzQW6PTn16gEBqF/d6/+U
+    o9j/aYisvpQTPf73ADQEFdqvwLKphLURnK7XfNtAHLuw== openpgp:0x675EE2CA
+
+Add this key to your GitHUB account under SSH-keys. You can also use this key for any other ssh service, just copy it
+to your remote ssh-server into the file `.ssh/authorized_keys`.
+
+Next step is to tell the windows git client to use PuTTY as its ssh client. Do this by setting the `GIT_SSH` env variable
+to `pling.exe`.
+
+    $ SET GIT_SSH="C:\Program Files\PuTTY\plink.exe"
+
+Make it permament by adding it to your windows environment. Right-click "Your Computer" -> Advanced systemsettings -> Environment 
+variables and restart your shell.
+
+You should now be able to pull/push your git repository using git and your YuBiKey:
+
+    $ cd password-store
+    $ git pull
+
+And you will be asked for your pin:
+
+{{< lightbox src="/img/passwords/enter-pin.png" lightbox="passwords" title=" ">}}
+
+You are done. You can use a GUI tool such as [QtPass](https://qtpass.org/) if you'd like. 
 
 ## Mac
 
 ## Ubuntu/Linux
 
+
 ## Android 
-Download and install [OpenKeyChain](https://www.openkeychain.org/) on your phone and import your public key. Once your
+### OpenKeyChain
+Download and install [OpenKeyChain](https://www.openkeychain.org/) on your phone and import your **public** key. Once your
 public key is imported you need to verify your key: Open the OpenKeyChain app and hold your YuBiKey to the 
 backside of your phone. You should see that the OpenKeyChain app communicates with the YuBiKey using NFC and
 imports also information about that your YuBiKey holds the private keys for those public keys. Now the app knows
 that when it needs to access the private keys, it needs to ask for you to hold the YuBiKey against the backside of
 your phone.
 
-Now you are install the [password manager store app](https://github.com/android-password-store/Android-Password-Store)
+### Android Password Store
+Now you can install the [password manager store app](https://github.com/android-password-store/Android-Password-Store)
 
-Open the settings and configure `git server settings`:
+Open settings and configure `git server settings`:
+
 - `ssh` as protocol
 - username: `git`
 - server URL: `github.com`
@@ -100,5 +208,6 @@ Open the settings and configure `git server settings`:
 
 In the settings menu under Crypto, you should also select `OpenKeyChain` and select also your key ID.
 
-You are done - you should now be able to clone the repo, view passwords, make changed and push the repo.
+Assuming you have added your public ssh-key to your GitHUB account as explained above, you should now be able to clone 
+the repo, view passwords, make changes and push the repo using your YuBiKey on your Android phone.
 
