@@ -86,9 +86,7 @@ unit and calculate the relative humidity value using this table there.
 
 The following image shows the sensor schematic which I’ll be using.
 
-<a href="/img/wireless_sensor/sensor_schema.png" data-lightbox="schematic" data-title="">
-	<img src="/img/wireless_sensor/sensor_schema.png" alt="Schematic"/>
-</a>
+{{< lightbox src="/img/wireless_sensor/sensor_schema.png" lightbox="pcbs" title="Schematic">}}
 
 B57164-K164 is the thermistor which I used and R1 is the voltage devider resistor, which has the same value as the thermistor. 
 By letting the PIC control the current flow through the sensor here as well, power can be saved during sleep mode.
@@ -127,9 +125,7 @@ I recommend using Microchip MPLAB IDE.
 
 The sensor components placed on a breadboard for testing:
 
-<a href="/img/wireless_sensor/sensor_prototype.jpg" data-lightbox="schematic" data-title="">
-	<img src="/img/wireless_sensor/sensor_prototype.jpg" alt="Prototype"/>
-</a>
+{{< lightbox src="/img/wireless_sensor/sensor_prototype.jpg" lightbox="pcbs" title="">}}
 
 The green item on the left is the RF transmitter module. The white plastic sensor between the RF module and the 
 battery is the humidity sensor. The temperature sensor is the gray component which sticks out above the black PIC 
@@ -139,9 +135,7 @@ The [receiver unit](/electronics/2010/10/10/rf_transceiver.html) is connected to
 values into degrees Celcius and relative humidity and stores those values into a database using rrdtool. The first 
 image shows the humidity in the bath room (watch the humidity raise as someone is using the shower):
 
-<a href="/img/wireless_sensor/bath_temperature.png" data-lightbox="schematic" data-title="">
-	<img src="/img/wireless_sensor/bath_temperature.png" alt="Prototype"/>
-</a>
+{{< lightbox src="/img/wireless_sensor/bath_temperature.png" lightbox="pcbs" title="">}}
 
 ## What’s next
 

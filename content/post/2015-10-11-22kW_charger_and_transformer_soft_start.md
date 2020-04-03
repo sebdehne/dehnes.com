@@ -22,23 +22,14 @@ me building this.
 ## High res photos
 Here are some close up photos:
 
-### 25kVA dYN transformer wiring
 The terminal block on top is the primary side. The terminal at the button is the secondary side. The neutral output is connected to ground.
 
 {{< lightbox src="/img/22kW_charger/01_transformer.jpg" lightbox="22kw" title="25kVA dYN transformer wiring">}}
 
-### Controller & soft starter box 
-
 {{< lightbox src="/img/22kW_charger/02_controller_and_soft_starter.jpg" lightbox="22kw" title="Controller and soft starter">}}
-
-### 400V box with 32A circuit breaker and earth fault switch 
 
 {{< lightbox src="/img/22kW_charger/03_400V_box.jpg" lightbox="22kw" title="400V box with 32A circuit breaker and earth fault switch">}}
 
-### 230V input split and 32A circuit breaker with earth fault switch 
-
 {{< lightbox src="/img/22kW_charger/04_input_splitter.jpg" lightbox="22kw" title="230V input split and 32A circuit breaker with earth fault switch">}}
-
-### Schematic 
 
 {{< lightbox src="/img/22kW_charger/05_schematic.png" lightbox="22kw" title="Schematic">}}

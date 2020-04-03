@@ -13,36 +13,30 @@ I selected [Beta Layout](http://www.pcb-pool.com/) as the PCB manufacturer for t
 
 The final board:
 
-<a href="/img/garage_door-2/20120316_181912.jpg" data-lightbox="pic" data-title="">
-	<img src="/img/garage_door-2/20120316_181912.jpg" alt=""/>
-</a>
+{{< lightbox src="/img/garage_door-2/20120316_181912.jpg" lightbox="garage_door" title="The final PCB">}}
 
 The solder mask, silkscreen and the plated holes are features that make the board look so much better, compared to a home made board.
 
-Assembling the board was easy, especially soldering with plated holes is fun. Except the miscalculated package for the trim-pot (I had to use the square blue pot instead of a round shaped one), everything worked out well. Here is the assembled board:
+Assembling the board was easy, especially soldering with plated holes is fun. Except the miscalculated package for the 
+trim-pot (I had to use the square blue pot instead of a round shaped one), everything worked out well. Here is the assembled board:
 
-<a href="/img/garage_door-2/20120316_182215.jpg" data-lightbox="pic" data-title="">
-	<img src="/img/garage_door-2/20120316_182215.jpg" alt=""/>
-</a>
-<a href="/img/garage_door-2/20120316_182056.jpg" data-lightbox="pic" data-title="">
-	<img src="/img/garage_door-2/20120316_182056.jpg" alt=""/>
-</a>
+{{< lightbox src="/img/garage_door-2/20120316_182215.jpg" lightbox="garage_door" title="">}}
+{{< lightbox src="/img/garage_door-2/20120316_182056.jpg" lightbox="garage_door" title="">}}
 
-The orange wire is the antenna I’m using. It is good enough to bridge the distance to the garage. One of the LED’s blink when a RF signal has been received and the other LED blinks when a RF signal has been sent (such as the current status of the door and light).
+The orange wire is the antenna I’m using. It is good enough to bridge the distance to the garage. One of the LED’s blink when a RF 
+signal has been received and the other LED blinks when a RF signal has been sent (such as the current status of the door and light).
 
 This board fits nicely in the following case:
 
-<a href="/img/garage_door-2/20120316_182536.jpg" data-lightbox="pic" data-title="">
-	<img src="/img/garage_door-2/20120316_182536.jpg" alt=""/>
-</a>
+{{< lightbox src="/img/garage_door-2/20120316_182536.jpg" lightbox="garage_door" title="">}}
 
 The final controller is then connected via the 6p6c jack connector to the existing door opener like this:
 
-<a href="/img/garage_door-2/20120316_184012.jpg" data-lightbox="pic" data-title="">
-	<img src="/img/garage_door-2/20120316_184012.jpg" alt=""/>
-</a>
+{{< lightbox src="/img/garage_door-2/20120316_184012.jpg" lightbox="garage_door" title="">}}
 
-To open and close the garage door, I’ve written a simple Android app which talks to my home server via JSON/REST via wifi. This server has my [general purpose RF transceiver](/electronics/2010/10/10/rf_transceiver.html) connected to it which is used to communicate with this controller over 433Mhz RF. 
+To open and close the garage door, I’ve written a simple Android app which talks to my home server via JSON/REST via wifi. 
+This server has my [general purpose RF transceiver](/electronics/2010/10/10/rf_transceiver.html) connected to it which is used 
+to communicate with this controller over 433Mhz RF. 
 
 Here is a short demo of the final application:
 

@@ -34,9 +34,7 @@ skip the regulator. For the pull-up resistors R1 and R2 I choose 10KOhm. R3 is a
 the display contrast. R4 is needed for the LED background light built into the LCD display planet. You should check the datasheet 
 of your display for the correct value. C1 and C2 are for filtering and have a value of 100nF.
 
-<a href="/img/ir_thermo/large/ir_sensor_prototype.png" data-lightbox="schematic" data-title="">
-	<img src="/img/ir_thermo/small/ir_sensor_prototype.png" alt="Schematic"/>
-</a>
+{{< lightbox src="/img/ir_thermo/large/ir_sensor_prototype.png" lightbox="ir_thermometer" title="">}}
 
 (Please note that the display module shown in the drawing is not the same one which I used for my setup)
 

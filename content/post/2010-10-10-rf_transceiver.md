@@ -56,58 +56,36 @@ In case the destination address matches, the message is then forwarded over the 
    
 All components will be placed on a PCB board which is placed in a plastic container with an antenna on top. Here is the schematic of the board:
 
-<a href="/img/rf_transceiver/rf_receiver_schematic.png" data-lightbox="pic" data-title="">
-	<img src="/img/rf_transceiver/rf_receiver_schematic.png" alt="schematic"/>
-</a>
+{{< lightbox src="/img/rf_transceiver/rf_receiver_schematic.png" lightbox="rf" title="Schematic">}}
 
 On the left side is the RF module (AM-RRQ3-433). The R1 is a 10KOhm potentiometer for configuring the RSSI reference voltage. U1 is the PIC16F690 microcontroller. In the right upper corner you find a 7×2 flat cable connector which is the connection to the display. Below is the TTL-to-USB cable connector and in the right bottom corner is the ICSP connector.
 
 Since I wanted to fit the board into a 59mm x 59mm box, I was forced to use a double layered PCB board. The bottom layer looks as follows:
 
-<a href="/img/rf_transceiver/board_down.png" data-lightbox="pic" data-title="">
-	<img src="/img/rf_transceiver/board_down.png" alt="board"/>
-</a>
+{{< lightbox src="/img/rf_transceiver/board_down.png" lightbox="rf" title="PCB design buttom layer">}}
 
 And the upper layer:
 
-<a href="/img/rf_transceiver/board_up.png" data-lightbox="pic" data-title="">
-	<img src="/img/rf_transceiver/board_up.png" alt="board"/>
-</a>
+{{< lightbox src="/img/rf_transceiver/board_up.png" lightbox="rf" title="PCB design upper layer">}}
 
 The component at the top is the 2×7 flat cable connector. The long vertical component to the right is the RF module (AM-RRQ3-433). The the PIC is in the middle and below it is the potentiometer. The 6 pin connector in the left bottom corner is the TTL-to-USB cable connector and the 6 pin connector in the right bottom corner is the ICSP connector. All other holes are vias which connect the bottom layer to the upper layer.
 
 I developed the PCB using the same method as explained on my [previous post](/electronics/2010/03/10/making-pcbs.html) with the additional feature of adding an aligned upper layer. After four attempts, I finally managed to developed a double sided board which works:
 
-<a href="/img/rf_transceiver/rf_receiver-01.jpg" data-lightbox="pic" data-title="">
-	<img src="/img/rf_transceiver/rf_receiver-01.jpg" alt="board"/>
-</a>
-<a href="/img/rf_transceiver/rf_receiver-02.jpg" data-lightbox="pic" data-title="">
-	<img src="/img/rf_transceiver/rf_receiver-02.jpg" alt="board"/>
-</a>
+{{< lightbox src="/img/rf_transceiver/rf_receiver-01.jpg" lightbox="rf" title="">}}
+{{< lightbox src="/img/rf_transceiver/rf_receiver-02.jpg" lightbox="rf" title="">}}
 
 ## More pictures
    
-<a href="/img/rf_transceiver/rf_receiver-03.jpg" data-lightbox="pic" data-title="">
-	<img src="/img/rf_transceiver/rf_receiver-03.jpg" alt="board"/>
-</a>
-<a href="/img/rf_transceiver/rf_receiver-04.jpg" data-lightbox="pic" data-title="">
-	<img src="/img/rf_transceiver/rf_receiver-04.jpg" alt="board"/>
-</a>
-<a href="/img/rf_transceiver/rf_receiver-05.jpg" data-lightbox="pic" data-title="">
-	<img src="/img/rf_transceiver/rf_receiver-05.jpg" alt="board"/>
-</a>
-<a href="/img/rf_transceiver/rf_receiver-06.jpg" data-lightbox="pic" data-title="">
-	<img src="/img/rf_transceiver/rf_receiver-06.jpg" alt="board"/>
-</a>
+{{< lightbox src="/img/rf_transceiver/rf_receiver-03.jpg" lightbox="rf" title="">}}
+{{< lightbox src="/img/rf_transceiver/rf_receiver-04.jpg" lightbox="rf" title="">}}
+{{< lightbox src="/img/rf_transceiver/rf_receiver-05.jpg" lightbox="rf" title="">}}
+{{< lightbox src="/img/rf_transceiver/rf_receiver-06.jpg" lightbox="rf" title="">}}
 
 The antenna which I use is: [ANT-433-PW-QW-ND](http://search.digikey.com/scripts/DkSearch/dksus.dll?WT.z_header=search_go&lang=en&site=us&keywords=ANT-433-PW-QW-ND&x=0&y=0).
 
-<a href="/img/rf_transceiver/rf_receiver-07.jpg" data-lightbox="pic" data-title="">
-	<img src="/img/rf_transceiver/rf_receiver-07.jpg" alt="board"/>
-</a>
-<a href="/img/rf_transceiver/rf_receiver-08.jpg" data-lightbox="pic" data-title="">
-	<img src="/img/rf_transceiver/rf_receiver-08.jpg" alt="board"/>
-</a>
+{{< lightbox src="/img/rf_transceiver/rf_receiver-07.jpg" lightbox="rf" title="">}}
+{{< lightbox src="/img/rf_transceiver/rf_receiver-08.jpg" lightbox="rf" title="">}}
 
 ## Downloads
 

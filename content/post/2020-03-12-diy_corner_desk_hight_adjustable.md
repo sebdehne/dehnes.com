@@ -24,33 +24,21 @@ So this is a short post about how you can build a huge-ass, height adjustable, c
 Those parts are not really meant to fit on themselves. The underframes are wider than the straigh table tops
 but they support the corner table top nicely. Read on and you will see it works out just fine.
 
-<a href="/img/corner_desk/corner-desk-01.jpg" data-lightbox="shopping-list" data-title="">
-	<img src="/img/corner_desk/corner-desk-01.jpg" alt="Shopping list"/>
-</a>
+{{< lightbox src="/img/corner_desk/corner-desk-01.jpg" lightbox="ikea" title="Shopping list">}}
 
 ## Joining the table tops
 Joining the table tops such that it becomes one rock solid large table top was the first step. Put
 the table tops together on the floor (upside down) and mark out a suitable place where the joints can be made:
 
-<a href="/img/corner_desk/corner-desk-02.jpg" data-lightbox="preparation" data-title="">
-	<img src="/img/corner_desk/corner-desk-02.jpg" alt="preparation"/>
-</a>
-<a href="/img/corner_desk/corner-desk-03.jpg" data-lightbox="preparation" data-title="">
-	<img src="/img/corner_desk/corner-desk-03.jpg" alt="preparation"/>
-</a>
-<a href="/img/corner_desk/corner-desk-04.jpg" data-lightbox="preparation" data-title="">
-	<img src="/img/corner_desk/corner-desk-04.jpg" alt="preparation"/>
-</a>
+{{< lightbox src="/img/corner_desk/corner-desk-02.jpg" lightbox="ikea" title="Preparation">}}
+{{< lightbox src="/img/corner_desk/corner-desk-03.jpg" lightbox="ikea" title="Preparation">}}
+{{< lightbox src="/img/corner_desk/corner-desk-04.jpg" lightbox="ikea" title="Preparation">}}
 
 Now use a router (or some other tool) to hollow out the marked area in such a way that a bolt with nuts at each end
 fits in nicely. Be careful to not cut through the table tops:
 
-<a href="/img/corner_desk/corner-desk-05.jpg" data-lightbox="hollow out" data-title="">
-	<img src="/img/corner_desk/corner-desk-05.jpg" alt="hollow out"/>
-</a>
-<a href="/img/corner_desk/corner-desk-06.jpg" data-lightbox="hollow out" data-title="">
-	<img src="/img/corner_desk/corner-desk-06.jpg" alt="hollow out"/>
-</a>
+{{< lightbox src="/img/corner_desk/corner-desk-05.jpg" lightbox="ikea" title="hollow out">}}
+{{< lightbox src="/img/corner_desk/corner-desk-06.jpg" lightbox="ikea" title="hollow out">}}
 
 ## Adjust the height
 Now is a good time to adjust the height og the underframes and the leg according to your preferences. It is more
@@ -61,32 +49,18 @@ Almost done. Place all three table tops on the two underframes and on the leg (w
 sure everything is nice and level (adjust height accordingly). Put bolts into the hollowed out areas and 
 tighten them such that all three table tops are joined together:
 
-<a href="/img/corner_desk/corner-desk-07.jpg" data-lightbox="putting-it-all-together" data-title="">
-	<img src="/img/corner_desk/corner-desk-07.jpg" alt="putting-it-all-together"/>
-</a>
-<a href="/img/corner_desk/corner-desk-08.jpg" data-lightbox="putting-it-all-together" data-title="">
-	<img src="/img/corner_desk/corner-desk-08.jpg" alt="putting-it-all-together"/>
-</a>
+{{< lightbox src="/img/corner_desk/corner-desk-07.jpg" lightbox="ikea" title="Putting it all together">}}
+{{< lightbox src="/img/corner_desk/corner-desk-08.jpg" lightbox="ikea" title="Putting it all together">}}
 
 Find some 50mm screws with a washer and secure table tops to the underframes:
 
-<a href="/img/corner_desk/corner-desk-09.jpg" data-lightbox="secure-the-table-tops" data-title="">
-	<img src="/img/corner_desk/corner-desk-09.jpg" alt="secure-the-table-tops"/>
-</a>
-<a href="/img/corner_desk/corner-desk-10.jpg" data-lightbox="secure-the-table-tops" data-title="">
-	<img src="/img/corner_desk/corner-desk-10.jpg" alt="secure-the-table-tops"/>
-</a>
-<a href="/img/corner_desk/corner-desk-11.jpg" data-lightbox="secure-the-table-tops" data-title="">
-	<img src="/img/corner_desk/corner-desk-11.jpg" alt="secure-the-table-tops"/>
-</a>
+{{< lightbox src="/img/corner_desk/corner-desk-09.jpg" lightbox="ikea" title="Secure the table tops">}}
+{{< lightbox src="/img/corner_desk/corner-desk-10.jpg" lightbox="ikea" title="Secure the table tops">}}
+{{< lightbox src="/img/corner_desk/corner-desk-11.jpg" lightbox="ikea" title="Secure the table tops">}}
 
 ## Done
 
 All done. 
 
-<a href="/img/corner_desk/corner-desk-12.jpg" data-lightbox="done" data-title="">
-	<img src="/img/corner_desk/corner-desk-12.jpg" alt="done"/>
-</a>
-<a href="/img/corner_desk/corner-desk-13.jpg" data-lightbox="done" data-title="">
-	<img src="/img/corner_desk/corner-desk-13.jpg" alt="done"/>
-</a>
+{{< lightbox src="/img/corner_desk/corner-desk-12.jpg" lightbox="ikea" title="The end result">}}
+{{< lightbox src="/img/corner_desk/corner-desk-13.jpg" lightbox="ikea" title="The end result">}}

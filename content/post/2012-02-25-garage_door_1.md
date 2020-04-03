@@ -9,14 +9,13 @@ categories: [ electronics ]
 
 In my garage I have a door opener from the norwegian firm [Edlandsporten](http://edlandsporten.as/). Here is a picture of the device and the official brochure:
 
-<a href="/img/garage_door-1/Edlandapneren.jpg" data-lightbox="pic" data-title="">
-	<img src="/img/garage_door-1/Edlandapneren.jpg" alt=""/>
-</a>
-<a href="/img/garage_door-1/brosjyreApneren.jpg" data-lightbox="pic" data-title="">
-	<img src="/img/garage_door-1/brosjyreApneren.jpg" alt=""/>
-</a>
+{{< lightbox src="/img/garage_door-1/Edlandapneren.jpg" lightbox="garage_door" title="">}}
+{{< lightbox src="/img/garage_door-1/brosjyreApneren.jpg" lightbox="garage_door" title="">}}
 
-Unfortunately, the included wireless hand transmitter (for the norwegian folks: “extra fjernkontroll”) to open/close the door has broken down and I need a replacement for it. I contacted the manufacture and they offered me a set of two new hand transmitters for a ridiculous  price of  1000 NOK (~ 125 EUR). In my opinion, this is madness for such a cheap piece for hardware. After a short investigation on the Internet, trying to find cheaper alternatives, I decided to build my own and publish the project. This blog entry is the first part of the design and build process of this door controller.
+Unfortunately, the included wireless remote controll has broken down and I need a replacement for it. I contacted the manufacture
+and they offered me a set of two new hand transmitters for a ridiculous  price of 1000 NOK (~ 125 EUR). In my opinion, this is mad
+ness for such a cheap piece for hardware. After a short investigation on the Internet, trying to find cheaper alternatives, I decided 
+to build my own and publish the project. This blog entry is the first part of the design and build process of this door controller.
 
 ## Requirements
 
@@ -56,25 +55,23 @@ Requirement 2 will be implemented by building and Android app which talks to my 
 
 Here is the schematic I came up with:
 
-<a href="/img/garage_door-1/GarageDoorControllerRevA1.jpg" data-lightbox="pic" data-title="">
-	<img src="/img/garage_door-1/GarageDoorControllerRevA1.jpg" alt=""/>
-</a>
+{{< lightbox src="/img/garage_door-1/GarageDoorControllerRevA1.jpg" lightbox="garage_door" title="Schematic">}}
 
 I’m using a PIC 16F690 microcontroller as the brain of the door controller board. This chip has built-in oscillator and ADC (analoge-digital converter) such I can take measurements of pin 4 & 6 to detect in which state the door currently is. “Light” is pin 1 and let’s me detect whether the light is on and “PortA” and “PortB” represent pin 4 & 6 to do dedicated “open” or “close”. For receiving 433Mhz RF signals I’m using the [RX433N](http://www.bhiab.se/data/files/09823251__rx433.pdf). For transmitting I’m using the RT4-433.9RC RF module.
 
-Although I have been making my own [home-brew PCBs](/electronics/2010/03/10/making-pcbs.html) before, I decided I would try a professional PCB manufacturer this time to get a nicer board with solder mask and the silk screens. I’m planning to put the board in a plastic enclosure from the manufacture Hammond Manufacturing with part number 1594BSGY (digi-key part: HM222-ND). Here is the PCB design I have come up with so far:
+Although I have been making my own [home-brew PCBs](/electronics/2010/03/10/making-pcbs.html) before, I decided I would try a 
+professional PCB manufacturer this time to get a nicer board with solder mask and the silk screens. I’m planning to put the board 
+in a plastic enclosure from the manufacture Hammond Manufacturing with part number 1594BSGY (digi-key part: HM222-ND). Here is the 
+PCB design I have come up with so far:
 
-<a href="/img/garage_door-1/GarageDoorControlerPCB_rev_a.jpg" data-lightbox="pic" data-title="">
-	<img src="/img/garage_door-1/GarageDoorControlerPCB_rev_a.jpg" alt=""/>
-</a>
+{{< lightbox src="/img/garage_door-1/GarageDoorControlerPCB_rev_a.jpg" lightbox="garage_door" title="Schematic">}}
 
 And here is the board in 3D view:
 
-<a href="/img/garage_door-1/GarageDoorControlerPCB_3d_rev_a.jpg" data-lightbox="pic" data-title="">
-	<img src="/img/garage_door-1/GarageDoorControlerPCB_3d_rev_a.jpg" alt=""/>
-</a>
+{{< lightbox src="/img/garage_door-1/GarageDoorControlerPCB_3d_rev_a.jpg" lightbox="garage_door" title="Schematic">}}
 
 Now I’m sending the design files to a yet-to-be-chosen PCB manufacturer and get this board made.
 
-In the [next post](/electronics/2012/02/25/garage_door_2.html), I’ll show you the final board, build it and open-source all project files, including the PIC firmware.
+In the [next post](/electronics/2012/02/25/garage_door_2.html), I’ll show you the final board, build it and open-source 
+all project files, including the PIC firmware.
 
