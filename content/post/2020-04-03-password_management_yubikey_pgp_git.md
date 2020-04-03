@@ -7,16 +7,6 @@ URL:     "/software/2020/04/03/password_management_yubikey_pgp_git.html"
 categories: [ software ]
 ---
 
-* [ Overview ](#overview)
-* [ PGP key setup ](#pgp-key-setup)
-* [ Windows + setting up the git repository ](#windows--setting-up-the-git-repository)
-   * [ SSH authentication ](#ssh-authentication)
-* [ Mac ](#mac)
-   * [ SSH authentication ](#ssh-authentication-1)
-* [ Android ](#android)
-   * [ OpenKeyChain ](#openkeychain)
-   * [ Android Password Store ](#android-password-store)
-
 ## Overview
 {{< lightbox src="/img/passwords/overview.png" lightbox="passwords" title=" ">}}
 
