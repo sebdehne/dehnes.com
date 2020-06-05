@@ -91,4 +91,13 @@ because you do not want to lock your ssh connection out.
 ### Samba fileserver
 At last, install and configure the samba fileserver as described [here](https://magpi.raspberrypi.org/articles/samba-file-server) and make sure it provides access to the external drive.
 
+### Accessing movies from iPad
+If your iPad has IpadOS 13 or later, you can access any samba file share using the `Files` app and play movies that way. 
+But one of the iPads I am using is too old and does not have IpadOS 13. 
+
+Fortunately there is the [VLC](https://apps.apple.com/us/app/vlc-for-mobile/id650377962) app 
+which has samba support and therefore can access all movies on the Raspberry Pi. That is a nice
+ solutions which works fine on old Ipads, and in addition, VLC will probably play more formats anyway.
+
 {{< lightbox src="/img/raspberry-movies/20200605_142329.jpg" lightbox="raspberry-pi-with-ipads" title=" ">}}
+
