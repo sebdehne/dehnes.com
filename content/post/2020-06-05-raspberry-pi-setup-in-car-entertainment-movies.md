@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  "Raspberry Pi 4 setup for watching movies in the car for kids"
+title:  "Raspberry Pi 4 setup as in-car entertainment for watching movies"
 date:   2020-06-05 20:00:00
 author: Sebastian Dehne
-URL:     "/software/2020/06/05/raspberry-pi-setup-for-watching-movies-in-car.html"
+URL:     "/software/2020/06/05/raspberry-pi-setup-in-car-entertainment-movies.html"
 categories: [ software ]
 ---
 
