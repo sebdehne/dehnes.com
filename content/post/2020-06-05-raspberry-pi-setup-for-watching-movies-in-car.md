@@ -46,13 +46,13 @@ As a bonus, I added a 4G USB dongle ([Huawai E3372](https://consumer.huawei.com/
 from the tablets.
 
 ### Final setup:
-- 2 iPads
 - Raspberry Pi 4 Model B, 4GB RAM
 - Raspberry Pi 4 Official enclosure
 - SanDisk MicroSDHC Ultra 32GB 98MB/s
 - LaCie Portable SSD 500GB
 - OnePlus Warp Charge 30, billader
 - Huawei E3372H 4G - White
+- (2 iPads)
 
 ### Configuration
 I have not bought a micro HDMI cable as it is perfectly possible to set this all up without directly connecting a monitor and keyboard.
