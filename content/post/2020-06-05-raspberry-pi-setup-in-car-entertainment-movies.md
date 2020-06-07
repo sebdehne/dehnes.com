@@ -57,29 +57,29 @@ from the tablets.
 
 ### Configuration
 I have not bought a micro HDMI cable as it is perfectly possible to set this all up without directly connecting a monitor and keyboard.
-Then just follow the instructions provided on the raspberry website on how to prepare the microSD card. 
+Start with following the instructions provided on the raspberry website on how to prepare the microSD card. 
 
 But make sure you have an empty file named ssh on the boot partition on the microSD as described [here](https://www.raspberrypi.org/documentation/remote-access/ssh/README.md). This ensures
-that the ssh-server is started when it boots.
+that the ssh-server is started when it boots such that it is possible to remotely access and configure it.
 
 Put the Raspberry Pi into its enclosure and connect it to your LAN via the ethernet port. Insert the microSD card and connect the USB-C power table. 
 Once it powers up, then lookup its IP address in the logs of you DHCP-server (or which you home router). 
 
 You can now access the Raspberry Pi via ssh using the default username and password which can be found [here](https://www.raspberrypi.org/documentation/linux/usage/users.md).
 
-### External storage
+#### External storage
 Connect the external storage and configure it such that it automatically mounted during bootup as described [here](https://www.raspberrypi.org/documentation/configuration/external-storage.md).
 I formatted the drive using NTFS as, which is supported by both Linux and Windows. Then the drive can
 easily by plugged into a Windows PC to upload content.
 
-### 4G Internet access
+#### 4G Internet access
 I tried the Huawai dongle first on a windows PC to make sure it was working.
 
 The way this dongle works is that it behaves as fully functional ethernet router with IP NAT and a dhcp-server. Therefore,
 it was just plug and play when it was connected to the Raspberry Pi. It automatically configured a eth1 device
 which got assigned a private IP address and a default route to the dongle. There was no other configuration needed.  
 
-### Wi-fi access point
+#### Wi-fi access point
 Because I am using this 4G Huawai dongle (which is already a fully functional IP  router), there is not need to run a 
 DHCP-server on the Raspberry Pi. All what was needed was to bridge the wifi access point interface (`wlan0`) to the 
 Huawai dongle (`eth1`) and then all wi-fi clients automatically see the network from the Huawai dongle and get an IP 
@@ -89,7 +89,7 @@ So just follow the instruction provided by [this](https://www.raspberrypi.org/do
 and bridge the `wlan0` interface to `eth1` and ensure that you do **not** configure `eth0` as `denyinterfaces` in the `/etc/dhcpcd.conf`
 because you do not want to lock your ssh connection out.
 
-### Samba fileserver
+#### Samba fileserver
 At last, install and configure the samba fileserver as described [here](https://magpi.raspberrypi.org/articles/samba-file-server) and make sure it provides access to the external drive.
 
 ### Accessing movies from iPad
