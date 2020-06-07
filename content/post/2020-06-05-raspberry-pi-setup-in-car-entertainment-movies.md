@@ -29,8 +29,9 @@ built-in wifi, which can be used as an access point, and USB3 support for connec
 
 ### Power
 The only concern was power. The entire Raspberry Pi 4 needs about 3A at 5V and can provide up to 1.2A of combined current 
-to its USB ports. So the external hard dive must consume power as little as possible, which is why I picked the cheapest 
-external SSD disk which I could find.
+to its USB ports. So the external hard dive must consume as little power as possible. A SSD drive seems like a good choice
+which has no moving parts / spinning disks and requires just a small amount of power. So I picked the cheapest SSD drive
+I could find (see below).
 
 To power the entire unit including the external disk in the car from a 12V outlet, you need a DC/DC converter which is 
 capable to delivery those 3A at 5V. This turned out to be quite hard to find actually. There are plenty of so called high
