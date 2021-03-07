@@ -1,10 +1,7 @@
 .DS_Store
-
-# Compiled site
-_site
-
-# Sass garbage
-.sass-cache
-
+*.iml
 .idea/
-public/
+out.tgz
+node_modules/
+.next/
+out/

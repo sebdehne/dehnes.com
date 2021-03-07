@@ -1,0 +1,60 @@
+.container {
+}
+
+.main {
+}
+
+.about {
+    display: block;
+    min-height: 220px;
+    margin-bottom: 40px;
+}
+
+.imgMe {
+    float: left;
+    height: 220px;
+    margin: 5px 15px 5px 0;
+}
+
+.postIndex {
+    padding: 0;
+}
+
+.postLink {
+    list-style-type: none;
+    margin-bottom: 20px;
+}
+
+.postLinkDate {
+
+}
+
+.postLinkCategoryWithBreak {
+
+}
+.postLinkCategoryNoBreak{
+    display: none;
+}
+
+.postLinkTitle {
+
+}
+
+@media screen and (min-width: 1000px) {
+    .postLinkCategoryNoBreak{
+        display: inline;
+    }
+    .postLinkCategoryWithBreak {
+        display: none;
+    }
+    .postLink {
+        list-style-type: none;
+        margin-bottom: 0;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .postIndex {
+        padding-left: 40px;
+    }
+}

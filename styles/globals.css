@@ -1,0 +1,21 @@
+html,
+body {
+  padding: 5px;
+  margin: 0;
+  font-family: 'Courier New', monospace;
+  background: #1b262c;
+  font-size: 18px;
+  color: #bbe1fa;
+}
+
+a {
+  color: inherit;
+}
+
+* {
+  box-sizing: border-box;
+}
+pre {
+  background: #141f22;
+  padding: 10px;
+}
