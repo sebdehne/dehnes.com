@@ -19,7 +19,7 @@ const Home = ({allPostsData}) => (
                 </p>
                 <p>I’m an electronics and computer enthusiast who is currently employed at <a
                     href="https://www.systek.no/">Systek</a> and works for the
-                    norwegian tax office. At work I design and build large-scale, highly available software systems
+                    Norwegian tax office. At work I design and build large-scale, highly available software systems
                     and
                     in my spare time, when not working or spending time with my lovely family, I design & build
                     electronics projects.</p>

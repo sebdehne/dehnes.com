@@ -1,21 +1,23 @@
 html,
 body {
-  padding: 5px;
-  margin: 0;
-  font-family: 'Courier New', monospace;
-  background: #1b262c;
-  font-size: 18px;
-  color: #bbe1fa;
+    padding: 5px;
+    margin: 0;
+    font-family: 'Courier New', monospace;
+    font-size: 18px;
+    background: #1b262c;
+    color: #bbe1fa;
 }
 
 a {
-  color: inherit;
+    color: inherit;
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
+
 pre {
-  background: #141f22;
-  padding: 10px;
+    background: #141f22;
+    padding: 10px;
+    overflow-x: auto;
 }
