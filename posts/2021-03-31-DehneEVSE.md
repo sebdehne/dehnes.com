@@ -47,7 +47,9 @@ The system architecture consist of the following 4 layers and their respective f
        - get all data
        - install new firmware: over-the-air firmware upgrades
        - switch on/off contactor
-       - set max allowed charge rate on Control Pilot
+       - set max allowed charge rate on Control Pilot at any give point in time. This can be adjusted fluently 
+         (even during ongoing charging), and the EV will follow as commanded. This is key to implement flexible 
+         load sharing in order to balance power between multiple charging stations.
 
 3. Server software which controls everything
     - accept new TCP connections from charging stations
