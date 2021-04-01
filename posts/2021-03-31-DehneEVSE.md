@@ -6,27 +6,27 @@ category: electronics
 ---
 
 I designed and built my own EVSE EV Charging station from scratch. It was a *real* full stack project,
-reaching from hardware/electronics design all the way up to the frontend webapp written in TypeScript. 
+reaching from hardware/electronics design all the way to the frontend webapp written in TypeScript. 
 
-Building your own charging stations is fun and gives you full control over charging (assuming you like to code). 
+Building your own charging stations is fun and gives you full control over the charging (assuming you like to code). 
 It is also cheaper (see BOM below).
 
-For example, you might only want to only allow charging at those hours during day when energy prices are 
-low enough, or you want to throttle the charging speeds to allow sharing of the line capacity with multiple
-charging stations when needed. 
+For example, you might only want to allow charging at those hours during the day when energy prices are 
+low enough. Or you could want to throttle the charging speeds to allow sharing of the line capacity with multiple
+charging stations when needed.
 
-Here is a litte demonstration of the charging station and the app I wrote:
+Here is a little demonstration of the charging station and the app I wrote:
 
 <iframe id="ytplayer" type="text/html" allow="fullscreen;" src="https://www.youtube.com/embed/G5hRH6UQRbQ"></iframe>
 
-In the video, you see:
+In the video, you will see:
 - the charging station detecting the 32A-rated cable
 - as the cable is plugged into the EV, it is detected by the charging station
 - when charging is enabled in the app, charging starts
 - when charging is disabled in the app, charging stops
 
 # Overview
-The system architecture consist of the following 4 layers and their features:
+The system architecture consist of the following 4 layers and their respective features:
 
 1. Hardware
    - ability to tell the car at which charging speed (0 means off) it can charge via the Pilot Control signal
@@ -42,8 +42,8 @@ The system architecture consist of the following 4 layers and their features:
    - Arduino based - easy to program
    - use IP/TCP to connect to the server via WiFi and keep connection alive (re-connect if timeout)
    - listen for events from the car and the server simultaneously
-   - upon state change from the EV, push notification the server immediately
-   - handle the following type of requests from the server:
+   - upon state change from the EV, push notification to the server immediately
+   - handle the following types of requests from the server:
        - get all data
        - install new firmware: over-the-air firmware upgrades
        - switch on/off contactor
@@ -53,16 +53,16 @@ The system architecture consist of the following 4 layers and their features:
     - accept new TCP connections from charging stations
     - fetch all data parameters from the charging stations regularly and log everything to InfluxDB
     - listen for push notifications from the charging stations and react upon them
-    - Load sharing: calculate maximum charging rate for each station which share the same power line
+    - Load sharing: calculate maximum charging rate for each station sharing the same power line
     - evaluate the charging logic state machine and send back updates (max charging rate + contactor on/off) to the charging station
 
-4. a frontend webapp
+4. A frontend webapp
     - uses Websockets to listen for real-time updates
     - show power consumption for all three phases 
     - 3 modes:
         - On - allows charging whenever the EV is ready
         - Off - does not allow charging at all
-        - Low-cost - allowed charging only during hours with low energy prices
+        - Low-cost - allows charging only during hours with low energy prices
     - influence load sharing preferences by setting a priority
     
 ## The hardware
@@ -80,7 +80,7 @@ Here are some close-ups of the final PCB:
 ![PCB assembled](/images/dehneevse/20210331_122603.jpg "PCB assembled")
 
 ### BOM PCB
-There is the Bill of Materials for the main logic board:
+Here is the Bill of Materials for the main logic board:
 
 | Part                           | Reference     | Cost in EUR |
 |--------------------------------|---------------|-------------|
@@ -135,28 +135,28 @@ The firmware for the Arduino Nano 33 IoT is written in C/C++ and I am using [Pla
 
 You can find the source code on my [GitHub account](https://github.com/sebdehne/DehneEVSE-Firmware) as well.
 
-I decided to let the server software (see below) handle all the charging logic and thus the firmware
+I decided to let the server software (see below) handle all the charging logic, and thus the firmware
 only needs to forward commands to the car as instructed by the server software.
 
-The main task of the firmware is to measure the voltage and current as well as handle events from 
+The main task of the firmware is to measure the voltage and current, as well as handle events from 
 both the server (coming from the TCP connection) and the car simultaneously. 
 Therefore, all I/O is coded non-blocking.
 
 ## The software
 Here is where all the main logic happens. The server software (written in Kotlin) accepts inbound TCP connections
-from charging stations as well as inbound Websocket connections from the webapp. It regularly polls data from all
+from charging stations, as well as inbound Websocket connections from the webapp. It regularly polls data from all
 connected charging stations and logs all data to InfluxDB.
 
-It also executes the main charging logic and load sharing algorithm to calculate at which rate each charging station
-may charge.
+It also executes the main charging logic and load sharing algorithm, to calculate at which rate each charging station
+is allowed to charge.
 
 The source code is available on my [GitHub account](https://github.com/sebdehne/SmartHomeServer).
 
 The webapp (see same github link above) is written in TypeScript and React and uses Websockets for
-full-duplex communication with the backend to display changes as they happen. 
+full-duplex communication with the backend to display changes as they happen.
 
 ## Future improvements
-The only thing that does not work very well is measuring voltage. The problem is that those small transformers
-are far from ideal for this purpose. The measured voltage is unstable and varies too much with temperature. There
-is not enough space in the encloser for 3 large(r) transformers, and I think I want to change the design to using
-some special purpose IC instead of transformers. 
+The only thing that is not working very well is measuring voltage. The problem lies in the small transformers being
+far from ideal for this purpose. The measured voltage is unstable and varies too much with temperature. There
+is not enough space in the enclosure for 3 large(r) transformers, so I am evaluating changing the design to using
+some special purpose IC instead of transformers.
