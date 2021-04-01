@@ -113,15 +113,15 @@ Here is the Bill of Materials for the main logic board:
 
 | Part                                         | Cost in EUR |
 |----------------------------------------------|-------------|
+| Main PCB (see above)                         | 80,05       |
 | Enclosure IP65 RND 455-00205                 | 42,00       |
-| Main PCB (see above)                         | 70,05       |
 | Contactor (Cenika NCH8-40 4NO)               | 70,00       |
 | Ground fault breaker Type B (Chint CV043889) | 130,00      |
 | 3x SCT013-050 current clamp                  | 26,22       |
 | Type 2 socket female 32A                     | 73,80       |
 | cables and small materials                   | 20,00       |
 |                                              |             |
-| **Total**                                    | **442,02**  |
+| **Total**                                    | **441,27**  |
 
 Here are some close-up of the final product:
 
