@@ -15,7 +15,7 @@ In the [previous post](/electronics/2015/10/08/soldering_thermal_fuse.html), I s
 Credits go to the helpful guys from the [EEVBlog forum](http://www.eevblog.com/forum/beginners/3-phase-isolating-transformer-shorted/) for helping
 me building this.
 
-<iframe src="https://www.youtube.com/embed/IALe5KcBb8c"></iframe>
+<iframe id="ytplayer" type="text/html" allow="fullscreen;" src="https://www.youtube.com/embed/IALe5KcBb8c"></iframe>
 
 ## High res photos
 Here are some close up photos:

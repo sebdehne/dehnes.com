@@ -79,4 +79,4 @@ Download the source code and the binary hex file (compiled for the PIC16F690) he
 
 Sensor in action:
 
-<iframe src="https://www.youtube.com/embed/kinmQh4vWxQ"></iframe>
+<iframe  id="ytplayer" type="text/html" allow="fullscreen;" src="https://www.youtube.com/embed/kinmQh4vWxQ"></iframe>
