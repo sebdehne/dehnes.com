@@ -157,6 +157,13 @@ The source code is available on my [GitHub account](https://github.com/sebdehne/
 The webapp (see same github link above) is written in TypeScript and React and uses Websockets for
 full-duplex communication with the backend to display changes as they happen.
 
+### Graphing
+All data which is logged into [InfluxDB](https://www.influxdata.com/) can easily be graphed using [Grafana](https://grafana.com/).
+
+Here is a graph of the current draw from a Nissan Leaf reaching 100% state of charge: 
+
+![Nissan Leaf reaching 100% SoC](/images/dehneevse/NissanLeafReachingEnd.png "Nissan Leaf reaching 100% SoC")
+
 ## Future improvements
 The only thing that is not working very well is measuring voltage. The problem lies in the small transformers being
 far from ideal for this purpose. The measured voltage is unstable and varies too much with temperature. There
