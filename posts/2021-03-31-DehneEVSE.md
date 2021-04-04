@@ -12,8 +12,10 @@ Building your own charging stations is fun and gives you full control over the c
 It is also cheaper (see BOM below).
 
 For example, you might only want to allow charging at those hours during the day when energy prices are 
-low enough. Or you could want to throttle the charging speeds to allow sharing of the line capacity with multiple
-charging stations when needed.
+low enough or when your solar system produces enough energy. Or you could want to throttle 
+the charging speed dynamically to allow sharing of the line capacity with multiple charging stations when 
+needed. Dynamically adjusting the charging speed to match the fluctuating output of your solar system is also
+possible.
 
 Here is a little demonstration of the charging station and the app I wrote:
 
