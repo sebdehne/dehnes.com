@@ -49,6 +49,7 @@ The system architecture consist of the following 4 layers and their respective f
    - use IP/TCP to connect to the server via WiFi and keep connection alive (re-connect if timeout)
    - listen for events from the car and the server simultaneously
    - upon state change from the EV, push notification to the server immediately
+   - all logging is buffered locally in RAM first, and then transferred to the server for long-term storage / debugging
    - handle the following types of requests from the server:
        - get all data
        - install new firmware: over-the-air firmware upgrades
