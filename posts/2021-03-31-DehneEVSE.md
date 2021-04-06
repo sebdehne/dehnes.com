@@ -5,15 +5,18 @@ URL:     "/electronics/2021/03/31/dehneevse_charging_station.html"
 category: electronics
 ---
 
-I designed and built my own EVSE EV Charging station from scratch. It was a *real* full stack project,
-reaching from hardware/electronics design all the way to the frontend webapp written in TypeScript. 
+I designed and built my own EVSE EV Charging station from scratch because I wanted 2 stations with each 22kW support 
+(3 phase, 400V, 32A) and "real-time" current & voltage measurements on all phases - in order to be able to do dynamic load sharing
+between the stations. E.g. if car-1 only uses 13A, the remaining 19A are allowed on the second station. 
+
+It was a *real* full stack project, reaching from hardware/electronics design all the way to the frontend webapp written in TypeScript. 
 
 Building your own charging stations is fun and gives you full control over the charging (assuming you like to code). 
 It is also cheaper (see BOM below).
 
 For example, you might only want to allow charging at those hours during the day when energy prices are 
-low enough or when your solar system produces enough energy. Or you could want to throttle 
-the charging speed dynamically to allow sharing of the line capacity with multiple charging stations when 
+low enough (our enery prices change on hourly basis) or when your solar system produces enough energy. Or you could 
+want to throttle the charging speed dynamically to allow sharing of the line capacity with multiple charging stations when 
 needed. Dynamically adjusting the charging speed to match the fluctuating output of your solar system is also
 possible.
 
@@ -42,6 +45,7 @@ The system architecture consist of the following 4 layers and their respective f
 
 2. Firmware
    - Arduino based - easy to program
+   - **over-the-air (OTA) firmware updates** - FTW. No need to open the enclosure each time
    - use IP/TCP to connect to the server via WiFi and keep connection alive (re-connect if timeout)
    - listen for events from the car and the server simultaneously
    - upon state change from the EV, push notification to the server immediately
