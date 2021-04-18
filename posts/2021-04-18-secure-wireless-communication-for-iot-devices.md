@@ -135,15 +135,15 @@ RTC IC for time keeping. Using an external clock like this has the following adv
   life-span from a coin cell type battery.
 - The RTC IC, in combination with a PNP MOSFET, can be used control the power to your main IoT
   device by setting an alarm. When the IoT device needs to sleep, the DS3231SN cuts power and only
-  enabled power periodically according to its alarm setting.
+  enables power periodically according to its alarm setting.
 
-In other words, such a dedicated RTC IC has two functions: A) maintain the clock for out secure
+In other words, such a dedicated RTC IC has two functions: A) maintain the clock for our secure
 communication and B) switch power to the IoT device periodically in order to achieve long battery life.  
 
 ## In practice
 GCM, which is the mode of operation which I am using for this example, requires a Nonce 
 (which is called IV here). This can be any number and the only requirement is that it has 
-to be unique. It is 12 bytes long so it is perfect for our timestamp. The following 
+to be unique. It is 12 bytes long so it is perfect for our timestamp (which is 32bits/4 bytes). The following 
 illustration shows the final encryption process using GCM with AES-256:
 
 ![Final encryption process](/images/secure-wireless-communication-iot/encryption_3.svg "Basic encryption")
