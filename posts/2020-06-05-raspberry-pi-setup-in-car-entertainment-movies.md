@@ -41,6 +41,11 @@ The power source which I ended up buying was from OnePlus: [OnePlus Warp Charge 
 
 It is capable of delivering a whopping 6A at 5V. Perfect!
 
+Just for the record, I measured the power consumption of the entire setup, including the
+power adapter (see below), and power consumption peaks around 9 Watts (0,7A @ 13V). 
+Assuming 80% efficiency of DC/DC converter, that would mean around 1,44A delivered to 
+the Raspberry PI via the USB cable.
+
 ### 4G Internet access
 As a bonus, I added a 4G USB dongle ([Huawai E3372](https://consumer.huawei.com/en/routers/e3372/specs/)) such that it is also possible to reach the internet 
 from the tablets.
