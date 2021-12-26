@@ -18,11 +18,11 @@ const Home = ({allPostsData}) => (
                     href="https://github.com/sebdehne">GitHub</a>, <a href="https://twitter.com/sebdehne">Twitter</a>]
                 </p>
                 <p>I’m an electronics and computer enthusiast who is currently employed at <a
-                    href="https://www.systek.no/">Systek</a> and works for the
+                    href="https://scienta.no/">Scienta</a> and works for the
                     Norwegian tax office. At work I design and build large-scale, highly available software systems
                     and
                     in my spare time, when not working or spending time with my lovely family, I design & build
-                    electronics projects.</p>
+                    electronics projects. I’m also a licensed ham radio operator and my callsign is LB3OJ.</p>
                 <p>This is my personal blog on which I will typically post all kinds of things that keep me busy in
                     my
                     spare time. Although mostly related to software & electronics, I might also share photographs or
