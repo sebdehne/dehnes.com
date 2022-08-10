@@ -38,7 +38,6 @@ to communicate with this controller over 433Mhz RF.
 
 Here is a short demo of the final application:
 
-<iframe id="ytplayer" type="text/html" allow="fullscreen;" src="https://www.youtube.com/embed/vr_u_xqNE3A"></iframe>
+/i/https://www.youtube.com/embed/vr_u_xqNE3A
 
-Thanks for comments and feedback.
 

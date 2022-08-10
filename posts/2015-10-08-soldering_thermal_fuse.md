@@ -14,4 +14,4 @@ which blows at 77°C. That is the fuse I am using.
 
 The challenge with those is however: how to solder a lead on to them without blowing the fuse while soldering? This is how I did that:
 
-<iframe  id="ytplayer" type="text/html" allow="fullscreen;" src="https://www.youtube.com/embed/qDc9i3p_1Xo"></iframe>
+/i/https://www.youtube.com/embed/qDc9i3p_1Xo

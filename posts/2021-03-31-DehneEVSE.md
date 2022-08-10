@@ -22,7 +22,7 @@ possible.
 
 Here is a little demonstration of the charging station and the app I wrote:
 
-<iframe id="ytplayer" type="text/html" allow="fullscreen;" src="https://www.youtube.com/embed/G5hRH6UQRbQ"></iframe>
+/i/https://www.youtube.com/embed/G5hRH6UQRbQ
 
 In the video, you will see:
 - the charging station detecting the 32A-rated cable

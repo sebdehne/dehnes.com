@@ -156,7 +156,7 @@ at 100%, we are using about 30W of enery for the entire room. Not bad.
 
 ## Demo
 
-<iframe id="ytplayer" type="text/html" allow="fullscreen;" src="https://www.youtube.com/embed/0XD4AwVUGps"></iframe>
+/i/https://www.youtube.com/embed/0XD4AwVUGps
 
 Bill of materials
 
