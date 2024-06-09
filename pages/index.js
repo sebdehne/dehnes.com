@@ -18,7 +18,7 @@ const Home = ({allPostsData}) => (
                     href="https://github.com/sebdehne">GitHub</a>, <a href="https://twitter.com/sebdehne">Twitter</a>]
                 </p>
                 <p>I’m an electronics and computer enthusiast who is currently employed at <a
-                    href="https://scienta.no/">Scienta</a> and works for the
+                    href="https://systek.no/">Systek</a> and works for the
                     Norwegian tax office. At work I design and build large-scale, highly available software systems
                     and
                     in my spare time, when not working or spending time with my lovely family, I design & build
