@@ -1,5 +1,5 @@
 ---
-title:  "Zero downtime deployments with database changes - JavaZone 2016"
+title:  "JavaZone 2016 - Zero downtime deployments with database changes"
 date:   '2016-09-09'
 URL: "/software/2016/09/09/zero-downtime-deplayments-with-database-changes.html"
 category: software

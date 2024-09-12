@@ -1,5 +1,5 @@
 ---
-title:  "Practical API design - JavaZone 2015"
+title:  "JavaZone 2015 - Practical API design"
 date:   '2015-10-23'
 URL: "/software/2015/10/23/practical-api-design.html"
 category: software
