@@ -15,7 +15,7 @@ const Home = ({allPostsData}) => (
                 <img className={styles.imgMe} src="/images/seb.jpg" alt="Sebastian Dehne"/>
                 <h1>Sebastian Dehne's Blog</h1>
                 <p>[<a href="mailto:sebastian@dehnes.com">Email</a>, <a
-                    href="https://github.com/sebdehne">GitHub</a>, <a href="https://twitter.com/sebdehne">Twitter</a>]
+                    href="https://github.com/sebdehne">GitHub</a>]
                 </p>
                 <p>I’m an electronics and computer enthusiast who is currently employed at <a
                     href="https://systek.no/">Systek</a> and works for the
