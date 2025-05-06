@@ -39,10 +39,10 @@ Mitt aksjeselskap hadde i inntektsåret 2024 kun 3 transaksjoner:
 
 Gitt disse opplysningene, brukte jeg følgende verdiene i webappen for å levere skattemeldingen:
 ##### Regnskap:
--	driftskostnad: 5784,00, konto: 7700
+-	driftskostnad: 5784,00; konto: 7700
 ##### Balanse:
--	anleggsmiddel: 50014,08, konto: 1350
--	omløpsmiddel: 420,92, konto: 1920
--	egenkaptial: 54216,00, konto: 2050, egenkapitalendringstype=kontantinnskudd
+-	anleggsmiddel: 50014,08; konto: 1350
+-	omløpsmiddel: 4201,92; konto: 1920
+-	egenkaptial: 54216,00; konto: 2050; egenkapitalendringstype=kontantinnskudd
 
 Og husk riktig kontaktinformasjon og kommunenummer. Lykke til.
