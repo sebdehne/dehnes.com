@@ -1,7 +1,7 @@
 ---
 title:  "Levere Skattemelding for selskap gratis"
 date:   '2025-05-05'
-URL: "/software/2025/05/05/klient-for-skattemelding.html"
+URL: "/software/2025/05/05/levere-skattemelding-for_selskap-gratis.html"
 category: software
 ---
 
@@ -32,17 +32,17 @@ Hvis du ønsker å bruke den for din bedrift også, så er det følgende regler 
 
 ### Eksempel
 
-Mitt aksjeselskap hadde i inntektsåret 2024 kun 3 transaksjoner:
-- kontantinnskudd ved stiftelse: 60 000,00
-- kjøpt av askjer: 50 014,08
+Gitt ditt selskap hadde i inntektsåret 2024 følgende 3 transaksjoner:
+- kontantinnskudd ved stiftelse: 30 000,00
+- kjøp av askjer: 20 014,08
 - stiftelsekosnad brønnøysundregistrene: 5 784,00
 
 Gitt disse opplysningene, brukte jeg følgende verdiene i webappen for å levere skattemeldingen:
 ##### Regnskap:
--	driftskostnad: 5784,00; konto: 7700
+-	driftskostnad: 5 784,00; konto: 7700
 ##### Balanse:
--	anleggsmiddel: 50014,08; konto: 1350
--	omløpsmiddel: 4201,92; konto: 1920
--	egenkaptial: 54216,00; konto: 2050; egenkapitalendringstype=kontantinnskudd
+-	anleggsmiddel: 20 014,08; konto: 1350
+-	omløpsmiddel: 4 201,92; konto: 1920
+-	egenkaptial: 24 216,00; konto: 2050; egenkapitalendringstype=kontantinnskudd
 
 Og husk riktig kontaktinformasjon og kommunenummer. Lykke til.
