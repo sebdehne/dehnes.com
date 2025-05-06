@@ -1,5 +1,5 @@
 ---
-title:  "Klient for skattemelding"
+title:  "Levere Skattemelding for selskap gratis"
 date:   '2025-05-05'
 URL: "/software/2025/05/05/klient-for-skattemelding.html"
 category: software
@@ -11,7 +11,7 @@ På Altinn side sider kan man lese følgende:
 
 Men i lovteksten står det egentlig bare om at skattemeldingen skal leveres
 [elektronisk](https://lovdata.no/forskrift/2016-11-23-1360/§8-1-2) - står ikke noe om at det må
-leveres fra et regnskaps.
+leveres fra et regnskapssystem.
 
 Jeg har et bittelite aksjeselskap som ikke har noe særlig drift og bare noen få transaksjoner i året. Og da har man egentlig ikke noe særlig behov for et regnskapssystem, så da er det veldig enkelt å føre regnskap manuelt i Excel for eksempel. Men så var det dette kravet om å levere skattemeldingen da...
 
