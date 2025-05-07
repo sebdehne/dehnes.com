@@ -24,6 +24,10 @@ Klienten er tilgjengelig her: [https://dehnes.com/skattemelding/](https://dehnes
 Hvis du ønsker å bruke den for din bedrift også, så er det følgende regler som gjelder:
 
 - Du aksepterer at all bruk av webappen er på egent ansvar. Den hjelper deg ikke å fylle ut skattemeldingen og du kan heller ikke stille meg, som har laget applikasjonen, til ansvar hvis det skulle oppstår en feil. Det er du alene som har ansvaret for å sende inn alle riktige opplysningene til skattemyndighetene. (Se eksempel nede)
+- Etter at skattemeldingen er generert og lastet opp, så blir du sendt til skatteetaten sine sider hvor du kan se over og
+  kontrollere at alt ser riktig ut, før du eventuelt bestemme deg for å sende alt inn.  
+  Det gir deg 100% kontroll og hvis skattemeldingen, som ble generert av appen, ikke er riktig, så kan du altså 
+  la være å sende inn.
 - Kun inntektsår 2024 er støttet per nå.
 - Jeg har lagt webappen bak google autentisering - den krever derfor at man har et google konto.
 - All data som lagres, skrives ikke til disk, men lagres kun midlertidig i minne på serveren, som forsvinner hver gang jeg 
