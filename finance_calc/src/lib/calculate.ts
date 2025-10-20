@@ -1,0 +1,186 @@
+import type {
+	CalculationResult,
+	CalculatorState,
+	Investment,
+	Loan,
+	MonthlyInvestmentResult,
+	MonthlyLoanResult,
+	MonthlyResult
+} from '../domain/dtos';
+import { round100 } from '$lib/utils';
+
+export const calculate = (state: CalculatorState): CalculationResult => {
+	let calculated: CalculationResult = {
+		monthly: []
+	};
+
+	let currentMonth = 0;
+	while (true) {
+		let changedSomething = false;
+
+		const previous: MonthlyResult =
+			currentMonth === 0
+				? {
+						period: -1,
+						income: state.income,
+						expenses: state.expenses * -1,
+						savings: 0,
+						interest: 0,
+						taxToBePaidForSavings: 0,
+						loanResults: [],
+						investmentResults: [],
+						result: 0,
+						balance: 0
+					}
+				: calculated.monthly[currentMonth - 1];
+
+		let m: MonthlyResult = {
+			period: currentMonth,
+			income: 0,
+			expenses: 0,
+			loanResults: [],
+			investmentResults: [],
+			savings: 0,
+			interest: 0,
+			taxToBePaidForSavings: 0,
+			result: 0,
+			balance: 0
+		};
+
+		state.loans.forEach((loan: Loan, index) => {
+			const previous: MonthlyLoanResult =
+				currentMonth === 0
+					? {
+							balance: loan.amount,
+							index: index,
+							interest: 0,
+							taxToBePaid: 0,
+							paid: 0
+						}
+					: calculated.monthly[currentMonth - 1].loanResults[index];
+
+			let l: MonthlyLoanResult = {
+				index,
+				interest: 0,
+				balance: 0,
+				taxToBePaid: 0,
+				paid: 0
+			};
+
+			if (loan.type === 'fixedMonthlyPayment') {
+				if (previous && currentMonth < loan.lengthInMonths) {
+					l.interest = round100(previous.balance * (loan.interrestPercent / 12));
+					l.paid = loan.monthlyPayment;
+					l.balance = previous.balance + l.paid + l.interest;
+					l.taxToBePaid = round100(l.interest * state.taxOnInterrest) * -1;
+					m.loanResults.push(l);
+					changedSomething = true;
+				} else if (previous && currentMonth === loan.lengthInMonths) {
+					l.interest = 0;
+					l.paid = previous.balance * -1;
+					l.balance = 0;
+					l.taxToBePaid = 0;
+					m.loanResults.push(l);
+					changedSomething = true;
+				} else {
+					return;
+				}
+			} else if (previous) {
+				l.interest = round100(previous.balance * (loan.interrestPercent / 12)) * -1;
+				l.paid = loan.monthlyPayment;
+				l.balance = previous.balance + l.paid + l.interest;
+				l.taxToBePaid = round100(l.interest * state.taxOnInterrest);
+
+				m.loanResults.push(l);
+				changedSomething = true;
+			}
+		});
+		state.investments.forEach((investment: Investment, index) => {
+			const previous: MonthlyInvestmentResult =
+				currentMonth === 0
+					? {
+							balance: investment.start,
+							index,
+							payment: investment.monthly,
+							interest: 0,
+							taxToBePaid: 0
+						}
+					: calculated.monthly[currentMonth - 1].investmentResults[index];
+
+			if (!previous) return;
+			if (currentMonth < investment.lengthInMonths) {
+				let l: MonthlyInvestmentResult = {
+					index,
+					interest: 0,
+					taxToBePaid: 0,
+					balance: 0,
+					payment: 0
+				};
+
+				l.interest = round100(previous.balance * (investment.yieldPercent / 12));
+				l.payment = round100(previous.payment * (1 + state.inflationPercent / 12));
+				l.balance = round100(previous.balance + l.payment + l.interest);
+				l.taxToBePaid = round100(l.interest * state.taxGainInvestments) * -1;
+
+				changedSomething = true;
+				m.investmentResults.push(l);
+			}
+		});
+
+		if (currentMonth < state.minLengthInMonths) {
+			changedSomething = true;
+		}
+		if (!changedSomething) {
+			break;
+		}
+
+		// monthly result
+		const payedLoans =
+			m.loanResults.reduce((previousValue, currentValue) => previousValue + currentValue.paid, 0) *
+			-1;
+		const payedInvestments =
+			m.investmentResults.reduce(
+				(previousValue, currentValue) => previousValue + currentValue.payment,
+				0
+			) * -1;
+		const taxToBePaidInvestments = m.investmentResults.reduce(
+			(previousValue, currentValue) => previousValue + currentValue.taxToBePaid,
+			0
+		);
+		const taxToBePaidInterrestLoans = m.loanResults.reduce(
+			(previousValue, currentValue) => previousValue + currentValue.taxToBePaid,
+			0
+		);
+
+		m.income = round100(previous.income * (1 + state.inflationPercent / 12));
+		m.expenses = round100(previous.expenses * (1 + state.inflationPercent / 12));
+		m.interest = round100(previous.savings * (state.interestRateCash / 12));
+		m.taxToBePaidForSavings = round100(m.interest * state.taxOnInterrest) * -1;
+		m.result = round100(
+			m.income +
+				m.expenses +
+				payedLoans +
+				payedInvestments +
+				m.taxToBePaidForSavings +
+				taxToBePaidInvestments +
+				taxToBePaidInterrestLoans
+		);
+		m.savings = round100(previous.savings + m.result);
+
+		const loanBalances = m.loanResults.reduce(
+			(previousValue, currentValue) => previousValue + currentValue.balance,
+			0
+		);
+		const investmentBalances = m.investmentResults.reduce(
+			(previousValue, currentValue) => previousValue + currentValue.balance,
+			0
+		);
+
+		m.balance = round100(investmentBalances + m.savings + loanBalances);
+
+		calculated.monthly.push(m);
+		currentMonth++;
+	}
+
+	return calculated;
+};

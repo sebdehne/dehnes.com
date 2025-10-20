@@ -5,3 +5,5 @@ out.tgz
 node_modules/
 .next/
 out/
+dehnes.com.tgz
+public/calc/
