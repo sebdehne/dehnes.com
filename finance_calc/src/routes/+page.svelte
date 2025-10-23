@@ -35,11 +35,18 @@
         changeInvestmentStartPeriode,
 		changeInvestmentName,
 		changeInvestmentStart,
-		changeInvestmentYieldPercent
+		changeInvestmentYieldPercent,
+
+        addOneTimeEvent,
+        removeOneTimeEvent,
+        changeOneTimeEventName,
+        changeOneTimeEventStartPeriode,
+        changeOneTimeEventAmount
 	} = MyFinanceState();
 
 	const calculationResult = $derived.by(() => {
 		console.log('financeState', $state.snapshot(financeState));
+        debugger;
 		let calculationResult = calculate(financeState);
 		console.log('calculationResult', calculationResult);
 		return calculationResult;
@@ -215,6 +222,36 @@
 	{/each}
 </ul>
 <button onclick={addInvestment}>Add investment</button>
+
+<h2>One time events:</h2>
+<ul>
+	{#each financeState.oneTimeEvents as oneTimeEvent, i (i)}
+		<li>
+			<TextInput
+				label="Navn:"
+				value={oneTimeEvent.name}
+				onChange={(v) => changeOneTimeEventName(i, v)}
+				placeholder="Navn"
+			/>
+			<TextInput
+				label="Happens at month:"
+				value={oneTimeEvent.startPeriod.toString()}
+                pattern={digitsOnly}
+				onChange={(v) => changeOneTimeEventStartPeriode(i, parseInt(v))}
+				placeholder="Start periode"
+			/>
+			<TextInput
+				label="Amount:"
+				value={oneTimeEvent.amount.toString()}
+				onChange={(v) => changeOneTimeEventAmount(i, parseFloat(v))}
+				pattern={digitsWithDecimalOnly}
+				placeholder="Amount"
+			/>
+			<button onclick={() => removeOneTimeEvent(i)}>Remove One time event {oneTimeEvent.name}</button>
+		</li>
+	{/each}
+</ul>
+<button onclick={addOneTimeEvent}>Add one time event</button>
 
 <h2>Results:</h2>
 

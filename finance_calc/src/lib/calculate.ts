@@ -14,9 +14,20 @@ export const calculate = (state: CalculatorState): CalculationResult => {
 		monthly: []
 	};
 
-	let currentMonth = 0;
-	while (true) {
-		let changedSomething = false;
+	let end = state.minLengthInMonths;
+	state.loans.forEach((loan) => {
+		const lEnd = loan.startPeriod + loan.lengthInMonths;
+		if (lEnd > end) {
+			end = lEnd;
+		}
+	});
+	state.oneTimeEvents.forEach((e) => {
+		if (end < e.startPeriod) {
+			end = e.startPeriod;
+		}
+	});
+
+	for (let currentMonth = 0; currentMonth <= end; currentMonth++) {
 		if (currentMonth > 1200) break;
 
 		const previous: MonthlyResult =
@@ -47,6 +58,7 @@ export const calculate = (state: CalculatorState): CalculationResult => {
 			result: 0,
 			balance: 0
 		};
+		calculated.monthly.push(m);
 
 		state.loans.forEach((loan: Loan, index) => {
 			if (currentMonth < loan.startPeriod) {
@@ -81,7 +93,6 @@ export const calculate = (state: CalculatorState): CalculationResult => {
 					l.balance = previous.balance + l.paid + l.interest;
 					l.taxToBePaid = round100(l.interest * state.taxOnInterrest) * -1;
 					m.loanResults.push(l);
-					changedSomething = true;
 				} else if (currentMonth === loan.lengthInMonths) {
 					// end reached
 					l.interest = 0;
@@ -89,7 +100,6 @@ export const calculate = (state: CalculatorState): CalculationResult => {
 					l.balance = 0;
 					l.taxToBePaid = 0;
 					m.loanResults.push(l);
-					changedSomething = true;
 				}
 			} else {
 				if (previous.balance < 0) {
@@ -99,7 +109,6 @@ export const calculate = (state: CalculatorState): CalculationResult => {
 					l.balance = previous.balance + l.paid + l.interest;
 					l.taxToBePaid = round100(l.interest * state.taxOnInterrest);
 					m.loanResults.push(l);
-					changedSomething = true;
 				} else {
 					// end reached
 					l.interest = 0;
@@ -107,7 +116,6 @@ export const calculate = (state: CalculatorState): CalculationResult => {
 					l.balance = 0;
 					l.taxToBePaid = 0;
 					m.loanResults.push(l);
-					changedSomething = true;
 				}
 			}
 		});
@@ -138,21 +146,12 @@ export const calculate = (state: CalculatorState): CalculationResult => {
 				l.balance = round100(previous.balance + l.payment + l.interest);
 				l.taxToBePaid = round100(l.interest * state.taxGainInvestments) * -1;
 
-				changedSomething = true;
 				m.investmentResults.push(l);
 			} else if (currentMonth === investment.lengthInMonths) {
 				l.payment = previous.balance * -1;
-				changedSomething = true;
 				m.investmentResults.push(l);
 			}
 		});
-
-		if (currentMonth < state.minLengthInMonths) {
-			changedSomething = true;
-		}
-		if (!changedSomething) {
-			break;
-		}
 
 		// monthly result
 		const payedLoans =
@@ -172,6 +171,10 @@ export const calculate = (state: CalculatorState): CalculationResult => {
 			0
 		);
 
+		const oneTimeAmounts = state.oneTimeEvents
+			.filter((e) => e.startPeriod === currentMonth)
+			.reduce((l, e) => l + e.amount, 0);
+
 		m.income = round100(previous.income * (1 + state.inflationPercent / 12));
 		m.expenses = round100(previous.expenses * (1 + state.inflationPercent / 12));
 		m.interest = round100(previous.savings * (state.interestRateCash / 12));
@@ -183,7 +186,8 @@ export const calculate = (state: CalculatorState): CalculationResult => {
 				payedInvestments +
 				m.taxToBePaidForSavings +
 				taxToBePaidInvestments +
-				taxToBePaidInterrestLoans
+				taxToBePaidInterrestLoans +
+				oneTimeAmounts
 		);
 		m.savings = round100(previous.savings + m.result);
 
@@ -197,9 +201,6 @@ export const calculate = (state: CalculatorState): CalculationResult => {
 		);
 
 		m.balance = round100(investmentBalances + m.savings + loanBalances);
-
-		calculated.monthly.push(m);
-		currentMonth++;
 	}
 
 	return calculated;

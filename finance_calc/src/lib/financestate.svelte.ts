@@ -1,4 +1,10 @@
-import { type CalculatorState, type Investment, type Loan, LoanType } from './dtos';
+import {
+	type CalculatorState,
+	type Investment,
+	type Loan,
+	LoanType,
+	type OneTimeEvent
+} from './dtos';
 import { calcPMT, PMT } from '$lib/utils';
 
 const defaultState: CalculatorState = {
@@ -8,6 +14,7 @@ const defaultState: CalculatorState = {
 	inflationPercent: 0.03,
 	loans: [],
 	investments: [],
+	oneTimeEvents: [],
 	taxOnInterrest: 0.22,
 	taxGainInvestments: 0.3784,
 	minLengthInMonths: 300
@@ -22,6 +29,12 @@ const defaultLoan: Loan = {
 	remaining: 0,
 	lengthInMonths: 25 * 12,
 	monthlyPayment: 10000
+};
+
+const defaultOneTimeEvent: OneTimeEvent = {
+	name: 'One time event',
+	startPeriod: 0,
+	amount: 0
 };
 
 const defaultInvestment: Investment = {
@@ -140,6 +153,22 @@ export const MyFinanceState = () => {
 		},
 		changeInvestmentYieldPercent: (input: number, s: number) => {
 			myStateObj.investments[input].yieldPercent = s;
+		},
+
+		addOneTimeEvent: () => {
+			myStateObj.oneTimeEvents[myStateObj.oneTimeEvents.length] = defaultOneTimeEvent;
+		},
+		removeOneTimeEvent: (index: number) => {
+			myStateObj.oneTimeEvents = myStateObj.oneTimeEvents.toSpliced(index, 1);
+		},
+		changeOneTimeEventName: (input: number, s: string) => {
+			myStateObj.oneTimeEvents[input].name = s;
+		},
+		changeOneTimeEventStartPeriode: (input: number, s: number) => {
+			myStateObj.oneTimeEvents[input].startPeriod = s;
+		},
+		changeOneTimeEventAmount: (input: number, s: number) => {
+			myStateObj.oneTimeEvents[input].amount = s;
 		}
 	};
 };

@@ -7,6 +7,11 @@ export type Event = {
 	startPeriod: number;
 };
 
+export type OneTimeEvent = Event & {
+	name: string;
+	amount: number;
+};
+
 export type Loan = Event & {
 	name: string;
 	amount: number;
@@ -28,6 +33,7 @@ export type Investment = Event & {
 export type CalculatorState = {
 	loans: Loan[];
 	investments: Investment[];
+	oneTimeEvents: OneTimeEvent[];
 	inflationPercent: number;
 	taxGainInvestments: number; // 0.3784
 	taxOnInterrest: number; // 0.22
