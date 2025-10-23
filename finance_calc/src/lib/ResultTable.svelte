@@ -33,7 +33,7 @@
     </header>
     {#each calculationResult.monthly as month}
         <div class="row">
-            <ResultTableCellString text={monthString(month.period + 1)} left={true}/>
+            <ResultTableCellString text={month.period + '/' +monthString(month.period + 1)} left={true}/>
 
             <!-- Incoming -->
             <ResultTableCellNumber num={month.income}/>
@@ -68,7 +68,7 @@
     header, .row {
         display: grid;
         align-items: center;
-        grid-template-columns: 70px 90px 90px 90px 90px 90px 90px 90px 90px 90px 90px 90px 90px 90px;
+        grid-template-columns: 80px 90px 90px 90px 90px 90px 90px 90px 90px 90px 90px 90px 90px 90px;
         gap: 4px;
         padding: 4px;
         background: var(--bg-1);
