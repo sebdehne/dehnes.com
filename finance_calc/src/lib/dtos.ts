@@ -3,7 +3,11 @@ export enum LoanType {
 	fixedMonthlyPayment = 'fixedMonthlyPayment'
 }
 
-export type Loan = {
+export type Event = {
+	startPeriod: number;
+};
+
+export type Loan = Event & {
 	name: string;
 	amount: number;
 	interrestPercent: number;
@@ -13,7 +17,7 @@ export type Loan = {
 	monthlyPayment: number;
 };
 
-export type Investment = {
+export type Investment = Event & {
 	name: string;
 	start: number;
 	monthly: number;

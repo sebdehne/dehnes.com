@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type {CalculationResult} from "../domain/dtos";
+    import type {CalculationResult} from "./dtos";
     import ResultTableCellString from "$lib/ResultTableCellString.svelte";
     import ResultTableCellNumber from "$lib/ResultTableCellNumber.svelte";
     import {monthString} from "$lib/utils";
@@ -73,5 +73,6 @@
         padding: 4px;
         background: var(--bg-1);
         text-align: end;
+        font-size: 10px;
     }
 </style>

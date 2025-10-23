@@ -6,7 +6,7 @@ import type {
 	MonthlyInvestmentResult,
 	MonthlyLoanResult,
 	MonthlyResult
-} from '../domain/dtos';
+} from './dtos';
 import { round100 } from '$lib/utils';
 
 export const calculate = (state: CalculatorState): CalculationResult => {
@@ -17,6 +17,7 @@ export const calculate = (state: CalculatorState): CalculationResult => {
 	let currentMonth = 0;
 	while (true) {
 		let changedSomething = false;
+		if (currentMonth > 1200) break;
 
 		const previous: MonthlyResult =
 			currentMonth === 0
@@ -48,8 +49,12 @@ export const calculate = (state: CalculatorState): CalculationResult => {
 		};
 
 		state.loans.forEach((loan: Loan, index) => {
+			if (currentMonth < loan.startPeriod) {
+				return;
+			}
+
 			const previous: MonthlyLoanResult =
-				currentMonth === 0
+				currentMonth === loan.startPeriod
 					? {
 							balance: loan.amount,
 							index: index,
@@ -58,6 +63,8 @@ export const calculate = (state: CalculatorState): CalculationResult => {
 							paid: 0
 						}
 					: calculated.monthly[currentMonth - 1].loanResults[index];
+
+			if (!previous) return;
 
 			let l: MonthlyLoanResult = {
 				index,
@@ -68,31 +75,40 @@ export const calculate = (state: CalculatorState): CalculationResult => {
 			};
 
 			if (loan.type === 'fixedMonthlyPayment') {
-				if (previous && currentMonth < loan.lengthInMonths) {
+				if (currentMonth < loan.lengthInMonths) {
 					l.interest = round100(previous.balance * (loan.interrestPercent / 12));
 					l.paid = loan.monthlyPayment;
 					l.balance = previous.balance + l.paid + l.interest;
 					l.taxToBePaid = round100(l.interest * state.taxOnInterrest) * -1;
 					m.loanResults.push(l);
 					changedSomething = true;
-				} else if (previous && currentMonth === loan.lengthInMonths) {
+				} else if (currentMonth === loan.lengthInMonths) {
+					// end reached
 					l.interest = 0;
 					l.paid = previous.balance * -1;
 					l.balance = 0;
 					l.taxToBePaid = 0;
 					m.loanResults.push(l);
 					changedSomething = true;
-				} else {
-					return;
 				}
-			} else if (previous) {
-				l.interest = round100(previous.balance * (loan.interrestPercent / 12)) * -1;
-				l.paid = loan.monthlyPayment;
-				l.balance = previous.balance + l.paid + l.interest;
-				l.taxToBePaid = round100(l.interest * state.taxOnInterrest);
-
-				m.loanResults.push(l);
-				changedSomething = true;
+			} else {
+				if (previous.balance < 0) {
+					// still going
+					l.interest = round100(previous.balance * (loan.interrestPercent / 12));
+					l.paid = l.interest * -1 + loan.monthlyPayment;
+					l.balance = previous.balance + l.paid + l.interest;
+					l.taxToBePaid = round100(l.interest * state.taxOnInterrest);
+					m.loanResults.push(l);
+					changedSomething = true;
+				} else {
+					// end reached
+					l.interest = 0;
+					l.paid = previous.balance * -1;
+					l.balance = 0;
+					l.taxToBePaid = 0;
+					m.loanResults.push(l);
+					changedSomething = true;
+				}
 			}
 		});
 		state.investments.forEach((investment: Investment, index) => {
@@ -108,20 +124,24 @@ export const calculate = (state: CalculatorState): CalculationResult => {
 					: calculated.monthly[currentMonth - 1].investmentResults[index];
 
 			if (!previous) return;
-			if (currentMonth < investment.lengthInMonths) {
-				let l: MonthlyInvestmentResult = {
-					index,
-					interest: 0,
-					taxToBePaid: 0,
-					balance: 0,
-					payment: 0
-				};
+			let l: MonthlyInvestmentResult = {
+				index,
+				interest: 0,
+				taxToBePaid: 0,
+				balance: 0,
+				payment: 0
+			};
 
+			if (currentMonth < investment.lengthInMonths) {
 				l.interest = round100(previous.balance * (investment.yieldPercent / 12));
 				l.payment = round100(previous.payment * (1 + state.inflationPercent / 12));
 				l.balance = round100(previous.balance + l.payment + l.interest);
 				l.taxToBePaid = round100(l.interest * state.taxGainInvestments) * -1;
 
+				changedSomething = true;
+				m.investmentResults.push(l);
+			} else if (currentMonth === investment.lengthInMonths) {
+				l.payment = previous.balance * -1;
 				changedSomething = true;
 				m.investmentResults.push(l);
 			}

@@ -1,4 +1,4 @@
-import type { Loan } from '../domain/dtos';
+import type { Loan } from './dtos';
 
 export function PMT(ir: number, np: number, pv: number, fv: number = 0, type: number = 0) {
 	/*

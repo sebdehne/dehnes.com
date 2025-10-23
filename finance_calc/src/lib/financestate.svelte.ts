@@ -1,4 +1,4 @@
-import { type CalculatorState, type Investment, type Loan, LoanType } from '../domain/dtos';
+import { type CalculatorState, type Investment, type Loan, LoanType } from './dtos';
 import { calcPMT, PMT } from '$lib/utils';
 
 const defaultState: CalculatorState = {
@@ -15,6 +15,7 @@ const defaultState: CalculatorState = {
 
 const defaultLoan: Loan = {
 	name: 'Boliglån',
+	startPeriod: 0,
 	amount: -3000000,
 	interrestPercent: 0.05,
 	type: LoanType.fixedMonthlyPayment,
@@ -24,8 +25,9 @@ const defaultLoan: Loan = {
 };
 
 const defaultInvestment: Investment = {
-	lengthInMonths: 25 * 12,
 	name: 'Fond sparing',
+	startPeriod: 0,
+	lengthInMonths: 25 * 12,
 	monthly: 5000,
 	start: 0,
 	yieldPercent: 0.06
@@ -69,6 +71,9 @@ export const MyFinanceState = () => {
 				...myStateObj.loans[i],
 				name: n
 			});
+		},
+		changeLoanStartPeriode: (i: number, n: number) => {
+			myStateObj.loans[i].startPeriod = n;
 		},
 		changeLoanAmount: (i: number, amount: number) => {
 			myStateObj.loans[i] = calcPMT({
@@ -117,6 +122,9 @@ export const MyFinanceState = () => {
 		},
 		removeInvestment: (i: number) => {
 			myStateObj.investments = myStateObj.investments.toSpliced(i, 1);
+		},
+		changeInvestmentStartPeriode: (input: number, s: number) => {
+			myStateObj.investments[input].startPeriod = s;
 		},
 		changeInvestmentName: (input: number, s: string) => {
 			myStateObj.investments[input].name = s;
